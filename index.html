@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
 <title>SE1021 · Ikapplistan</title>
 <style>
 :root{
@@ -16,6 +17,7 @@
   --line:#dbe2ea;
   --line-strong:#b9c4cf;
   --track:#e7ecf2;
+  --card:#ffffff;
   --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
 }
 *{box-sizing:border-box}
@@ -28,16 +30,20 @@ body{
   background-size:24px 24px;
   font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 }
-.wrap{max-width:920px;margin:0 auto;padding:44px 20px 90px}
+.wrap{max-width:960px;margin:0 auto;padding:44px 16px 90px}
+a{color:var(--accent-ink);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--accent-ink);outline-offset:2px}
 
 /* ---------- header ---------- */
 .course{margin:0 0 6px;font-family:var(--mono);font-size:13px;color:var(--muted)}
 h1{margin:0 0 10px;font-size:clamp(30px,5.5vw,46px);line-height:1.05;letter-spacing:-.02em;font-weight:800}
-.lede{margin:0;max-width:60ch;font-size:17px;color:var(--muted)}
+.lede{margin:0;max-width:62ch;font-size:17px;color:var(--muted)}
 .lede strong{color:var(--ink)}
+.countdown{display:inline-block;margin:14px 0 0;font:700 13px var(--mono);color:var(--accent-ink);
+  background:var(--accent-soft);border:1.5px solid var(--accent);border-radius:5px;padding:3px 10px}
 
 /* ---------- beam timeline ---------- */
-figure.beam{margin:30px 0 6px}
+figure.beam{margin:26px 0 6px}
 figure.beam svg{width:100%;height:auto;display:block}
 figure.beam figcaption{font-size:13px;color:var(--muted);margin-top:2px}
 .beam .lbl{font:11.5px var(--mono);fill:var(--muted)}
@@ -45,27 +51,120 @@ figure.beam figcaption{font-size:13px;color:var(--muted);margin-top:2px}
 .beam .lbl.ink{fill:var(--ink)}
 
 /* ---------- charts ---------- */
-.charts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:34px 0 8px}
-.chart{background:#fff;border:1px solid var(--line);border-radius:8px;padding:18px 14px 14px;text-align:center}
-.chart h3{margin:0 0 12px;font-size:15px}
-.donut{width:132px;height:132px}
+.charts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:30px 0 8px}
+.chart{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 10px 12px;text-align:center}
+.chart h3{margin:0 0 10px;font-size:15px}
+.donut{width:118px;height:118px}
 .donut .track{fill:none;stroke:var(--track);stroke-width:14}
 .donut .fillarc{fill:none;stroke:var(--accent);stroke-width:14;stroke-linecap:round;
   transform:rotate(-90deg);transform-origin:70px 70px;transition:stroke-dasharray .45s ease}
 .donut .big{font:700 30px var(--mono);fill:var(--ink);text-anchor:middle}
 .donut .unit{font:11px var(--mono);fill:var(--muted);text-anchor:middle}
-.chart .sub{margin:10px 0 0;font-size:13px;color:var(--muted)}
+.chart .sub{margin:8px 0 0;font-size:13px;color:var(--muted)}
 .chart .sub b{color:var(--ink)}
-.chart .when{margin:4px 0 0;font-size:12px;color:var(--muted);font-family:var(--mono)}
-#pep{margin:16px 0 0;font-size:16px;max-width:64ch}
+.chart .when{margin:3px 0 0;font-size:12px;color:var(--muted);font-family:var(--mono)}
+#pep{margin:16px 0 0;font-size:16px;max-width:66ch}
 #pep b{color:var(--accent-ink)}
-.strategy{margin:8px 0 0;font-size:14.5px;color:var(--muted);max-width:70ch}
+.strategy{margin:8px 0 0;font-size:14.5px;color:var(--muted);max-width:74ch}
+.strategy b{color:var(--ink)}
 
-/* ---------- list ---------- */
-main{margin-top:40px}
-section.part{margin-top:38px}
-section.part>h2{margin:0;font-size:22px;letter-spacing:-.01em}
-section.part>.partsub{margin:4px 0 0;font-size:14px;color:var(--muted);max-width:72ch}
+/* ---------- chips ---------- */
+.chips{margin-top:9px;display:flex;flex-wrap:wrap;gap:7px}
+.chip{font:13px var(--mono);padding:4px 10px;border-radius:5px;cursor:pointer;
+  border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);white-space:nowrap}
+.chip.extra{border-style:dashed;color:var(--muted)}
+.chip.done{background:var(--accent);border-color:var(--accent);border-style:solid;color:#fff}
+.chip:hover{border-color:var(--accent)}
+
+/* ---------- sections ---------- */
+main{margin-top:34px}
+section.part{margin-top:44px}
+section.part>h2,details.after>summary h2{margin:0;font-size:22px;letter-spacing:-.01em}
+.partsub{margin:4px 0 0;font-size:14px;color:var(--muted);max-width:74ch}
+.partsub b{color:var(--ink)}
+
+/* ---------- idag ---------- */
+.today{margin-top:30px;background:var(--card);border:1.5px solid var(--accent);border-radius:10px;padding:16px 18px 14px}
+.today .th{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.today h2{margin:0;font-size:20px}
+.today .tnote{font:12.5px var(--mono);color:var(--muted)}
+.today .tcount{margin-left:auto;font:700 13px var(--mono);color:var(--accent-ink)}
+.today .empty{margin:8px 0 0;color:var(--muted);font-size:15px}
+.today .behind{margin-top:14px;border-top:1px dashed var(--line-strong);padding-top:10px}
+.today .behind h3{margin:0;font-size:14px}
+.today .behind p{margin:2px 0 0;font-size:13px;color:var(--muted)}
+
+/* ---------- dagsplan ---------- */
+.days{margin-top:14px;display:grid;gap:12px}
+.day{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.day.past{opacity:.6}
+.day.past:hover{opacity:1}
+.day.is-today{border:1.5px solid var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.dh{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.dh h3{margin:0;font-size:16px}
+.dh .phase{font:11px var(--mono);color:var(--accent-ink);border:1px solid var(--accent);border-radius:4px;padding:0 6px}
+.dh .dnote{font-size:13px;color:var(--muted)}
+.dh .dcount{margin-left:auto;font:12.5px var(--mono);color:var(--muted)}
+.dh .dcount.full{color:var(--accent-ink);font-weight:700}
+.slot{display:grid;grid-template-columns:118px 1fr;gap:4px 12px;margin-top:10px}
+.slot .when{font:12.5px var(--mono);color:var(--muted);padding-top:5px}
+.slot .what{font-size:14px;font-weight:600}
+.tasks{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:5px}
+.task{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.task .tdesc{font-size:14px;color:var(--ink)}
+.task .tmin{font:12px var(--mono);color:var(--muted)}
+.rest{margin:10px 0 0;font-size:14px;color:var(--muted)}
+
+/* ---------- tentakort ---------- */
+.exams{margin-top:14px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.exam{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.eh{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.eh h3{margin:0;font-size:16px}
+.emeta{margin:2px 0 0;font:12px var(--mono);color:var(--muted)}
+.eh .ecount{margin-left:auto;font:12.5px var(--mono);color:var(--muted)}
+.eh .ecount.full{color:var(--accent-ink);font-weight:700}
+.badge{font:700 11px var(--mono);color:var(--accent-ink);background:var(--accent-soft);border-radius:4px;padding:1px 7px}
+.ecomment{margin:6px 0 0;font-size:13px;color:var(--accent-ink)}
+.probs{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px}
+.prob{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;align-items:baseline}
+.prob .pdesc{font-size:13.5px}
+.tag{font:11px var(--mono);color:var(--muted);border:1px solid var(--line-strong);border-radius:4px;padding:0 5px;margin-right:6px;white-space:nowrap}
+.prob.skip .pdesc{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line-strong)}
+.prob.skip .ptag{font:12px var(--mono);color:var(--muted);padding:4px 10px;border:1.5px dotted var(--line-strong);border-radius:5px}
+
+/* ---------- info ---------- */
+.info{margin-top:14px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 16px}
+.card h3{margin:0 0 4px;font-size:15.5px}
+.card ul{margin:4px 0 0;padding-left:18px;font-size:14px}
+.card li{margin:3px 0}
+.card li b{color:var(--ink)}
+.card.hot{border-color:var(--accent);background:#fffaf6}
+table.skiptab{border-collapse:collapse;width:100%;font-size:13.5px;margin-top:4px}
+.skiptab td{border-top:1px solid var(--line);padding:4px 6px 4px 0;vertical-align:top}
+.skiptab td:first-child{font-family:var(--mono);font-size:12.5px;white-space:nowrap}
+
+/* ---------- DS och extra ---------- */
+.dsrow{margin-top:14px;border-top:1px solid var(--line);padding-top:10px}
+.dsrow h3{margin:0;font-size:15px}
+.dsrow .chips{gap:8px 16px}
+.dsrow h3 span{font-weight:400;color:var(--muted);font-size:13px}
+.dsi{display:inline-flex;align-items:center;gap:2px}
+.dsi a{font:12px var(--mono);text-decoration:none;padding:2px 3px;color:var(--muted)}
+.dsi a:hover{color:var(--accent-ink)}
+.dsi a.key{color:var(--accent-ink);font-weight:700}
+.pool h3{margin:18px 0 0;font-size:15px}
+.pool .note{margin:2px 0 0;font-size:13px;color:var(--muted)}
+
+details.after{margin-top:44px}
+details.after>summary{cursor:pointer;list-style:none;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+details.after>summary::-webkit-details-marker{display:none}
+details.after>summary .hint{font-size:13px;color:var(--muted)}
+details.after>summary::before{content:"+";font:700 20px var(--mono);color:var(--accent-ink)}
+details.after[open]>summary::before{content:"-"}
+details.after>.partsub{margin-left:24px}
+
+/* ---------- gamla EX-listan ---------- */
 .week{margin-top:26px;border-top:2px solid var(--ink);padding-top:10px}
 .week h3{margin:0;font-size:16px}
 .week h3 span{font-weight:400;color:var(--muted)}
@@ -84,31 +183,21 @@ section.part>.partsub{margin:4px 0 0;font-size:14px;color:var(--muted);max-width
 .count.full{color:var(--accent-ink);font-weight:700}
 .allbtn{border:none;background:none;padding:0;font:12.5px var(--mono);color:var(--accent-ink);
   cursor:pointer;text-decoration:underline;text-underline-offset:3px}
-.allbtn:focus-visible{outline:2px solid var(--accent-ink);outline-offset:2px}
 .bdesc{margin:5px 0 0;font-size:14.5px;color:var(--muted);max-width:74ch}
-.chips{margin-top:9px;display:flex;flex-wrap:wrap;gap:7px}
-.chip{font:13px var(--mono);padding:4px 10px;border-radius:5px;cursor:pointer;
-  border:1.5px solid var(--line-strong);background:#fff;color:var(--ink)}
-.chip.extra{border-style:dashed;color:var(--muted)}
-.chip.done{background:var(--accent);border-color:var(--accent);border-style:solid;color:#fff}
-.chip:hover{border-color:var(--accent)}
-.chip:focus-visible{outline:2px solid var(--accent-ink);outline-offset:2px}
-
-details.after{margin-top:38px}
-details.after>summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:10px}
-details.after>summary::-webkit-details-marker{display:none}
-details.after>summary h2{margin:0;font-size:22px;letter-spacing:-.01em}
-details.after>summary .hint{font-size:13px;color:var(--muted)}
-details.after>summary::before{content:"+";font:700 20px var(--mono);color:var(--accent-ink)}
-details.after[open]>summary::before{content:"–"}
-details.after>.partsub{margin:4px 0 0 24px;font-size:14px;color:var(--muted)}
 
 footer{margin-top:52px;border-top:1px solid var(--line);padding-top:14px;
-  font-size:13px;color:var(--muted);max-width:74ch}
+  font-size:13px;color:var(--muted);max-width:76ch}
 
-@media (max-width:640px){
-  .charts{grid-template-columns:1fr}
+@media (max-width:860px){
+  .charts{grid-template-columns:repeat(2,1fr)}
+  .exams,.info{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .slot{grid-template-columns:1fr}
+  .slot .when{padding-top:0}
+  .dh .dcount,.eh .ecount,.today .tcount{margin-left:0}
   .bhead .right{margin-left:0}
+  .donut{width:104px;height:104px}
 }
 @media (prefers-reduced-motion:reduce){
   .donut .fillarc{transition:none}
@@ -120,68 +209,373 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:14px;
 
 <header>
   <p class="course">SE1021 Hållfasthetslära · HT26</p>
-  <h1>Ikapp på tre veckor.</h1>
-  <p class="lede"><strong>73 uppgifter</strong> från vecka 35-37 väntar, men teorin har du redan mött. Nu är det räknandet som gör jobbet: kärnuppgifterna först, extra där det känns skakigt.</p>
+  <h1>Alla gamla tentor före 19/10.</h1>
+  <p class="lede"><strong>46 tentauppgifter</strong> från de 7 tentor och 7 FX som SE1021-lärarna pekat ut, plus 50 diagnostiska skrivningar. Först typvis i takt med föreläsningarna, sen hela tentor på tid.</p>
+  <p class="countdown" id="countdown"></p>
 
-  <figure class="beam" aria-label="Tidslinje ritad som en belastad balk, från idag till tentan">
-  <svg viewBox="0 0 720 130" xmlns="http://www.w3.org/2000/svg" role="img">
-    <defs>
-      <marker id="ahg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
-        <path d="M0 0L10 5L0 10z" fill="#5d6b7a"/>
-      </marker>
-      <marker id="aha" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
-        <path d="M0 0L10 5L0 10z" fill="#e8650d"/>
-      </marker>
-    </defs>
-    <!-- balken -->
-    <line x1="28" y1="78" x2="692" y2="78" stroke="#1c2430" stroke-width="3"/>
-    <!-- stöd idag -->
-    <polygon points="28,80 16,100 40,100" fill="#1c2430"/>
-    <line x1="8" y1="102" x2="48" y2="102" stroke="#b9c4cf" stroke-width="2"/>
-    <text class="lbl ink" x="28" y="119" text-anchor="middle">idag 8/9</text>
-    <!-- rullstöd tentan -->
-    <circle cx="692" cy="88" r="7" fill="none" stroke="#1c2430" stroke-width="2.5"/>
-    <line x1="672" y1="99" x2="712" y2="99" stroke="#b9c4cf" stroke-width="2"/>
-    <!-- Red 1 -->
-    <line x1="175" y1="52" x2="175" y2="72" stroke="#5d6b7a" stroke-width="2" marker-end="url(#ahg)"/>
-    <text class="lbl" x="175" y="34" text-anchor="middle">Red. 1</text>
-    <text class="lbl" x="175" y="46" text-anchor="middle">17/9</text>
-    <!-- KS -->
-    <line x1="255" y1="38" x2="255" y2="72" stroke="#e8650d" stroke-width="3" marker-end="url(#aha)"/>
-    <text class="lbl big" x="255" y="28" text-anchor="middle">KS 22/9</text>
-    <!-- Red 2 + lab -->
-    <line x1="368" y1="56" x2="368" y2="72" stroke="#5d6b7a" stroke-width="2" marker-end="url(#ahg)"/>
-    <line x1="400" y1="56" x2="400" y2="72" stroke="#5d6b7a" stroke-width="2" marker-end="url(#ahg)"/>
-    <text class="lbl" x="384" y="34" text-anchor="middle">Red. 2 + lab</text>
-    <text class="lbl" x="384" y="46" text-anchor="middle">29/9 · 1/10</text>
-    <!-- Tentan -->
-    <line x1="692" y1="34" x2="692" y2="72" stroke="#e8650d" stroke-width="3" marker-end="url(#aha)"/>
-    <text class="lbl big" x="700" y="24" text-anchor="end">Tenta 19/10</text>
-  </svg>
-  <figcaption>Höstens belastningsdiagram: två punktlaster kvar att dimensionera för.</figcaption>
+  <figure class="beam" aria-label="Tidslinje ritad som en belastad balk, från vecka 40 till tentan">
+    <svg id="beamsvg" viewBox="0 0 720 130" xmlns="http://www.w3.org/2000/svg" role="img"></svg>
+    <figcaption>Stödet står där du står och flyttar sig med dagens datum.</figcaption>
   </figure>
 </header>
 
+<section class="today" id="today" aria-live="polite"></section>
+
 <section class="charts" id="charts"></section>
 <p id="pep"></p>
-<p class="strategy">Plan: ta kärnuppgifterna (heldragen ram, de före "samt" i schemat) uppifrån och ner. Det är 27 stycken på ungefär 8-10 h, sen är du i fas med det viktigaste. De streckade extrauppgifterna fyller du på med där det känns osäkert.</p>
+<p class="strategy"><b>Upplägg:</b> 1-11/10 räknar du uppgifterna typvis (stång, balk, töjning, effektivspänning) i takt med föreläsningarna. 12-16/10 blir tentavecka med hela tentor på tid. <b>230414 och 230113 sparas till genrepen</b>, så öppna dem inte innan.</p>
 
-<main id="list"></main>
+<main>
+
+  <section class="part" id="viktigt">
+    <h2>Viktigt att veta</h2>
+    <p class="partsub">Från Extentor-sidan, tentalistan, DS-sidan och kursprogrammet.</p>
+    <div class="info">
+
+      <div class="card hot">
+        <h3>Tentan 19/10</h3>
+        <ul>
+          <li><b>Mån 19/10 kl 8-13.</b> Kalendern säger salar U41, U51, V12 och V21. Kolla din plats i TentaAdmin.</li>
+          <li><b>6 uppgifter</b>, var och en ger 6, 5, 4, 3 eller 0 poäng. Aldrig 1 eller 2.</li>
+          <li>Rätt metod men räknefel ger 5 p. Fel tecken, riktning eller enhet ger 4 p. <b>Fel jämvikt eller dimensionsfel ger 0 p</b>, hur bra resten än är.</li>
+          <li>Hjälpmedel: FS (flikar, understrykningar och egna sidhänvisningar är ok, inga egna figurer, formler eller text), matematiska tabeller och miniräknare.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Poäng, betyg och KS-bonus</h3>
+        <ul>
+          <li>På de gamla tentorna (SE1010/SE1020) gällde <b>E 14</b>, D 18, C 22, B 25 och <b>A 29</b>. FX 12-13. Max 36 plus bonus. SE1021:s egna gränser står på försättsbladet.</li>
+          <li>Tre uppgifter med rätt metod och ett räknefel var (3 × 5 p) blir 15 p, alltså E redan utan bonus.</li>
+          <li>KS-bonus: 2-3 p på KS ger 1, 4-5 ger 2, 6-7 ger 3 och 8-10 ger 4 bonuspoäng. Gäller den här tentan och omtentan direkt efter.</li>
+          <li>KON1 rapporteras som godkänd när du klarar tentan, oavsett hur KS:en gick.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Det lärarna stryker</h3>
+        <table class="skiptab">
+          <tr><td>230414 · FX 230523</td><td>Ej uppgift 6</td></tr>
+          <tr><td>230113 · FX 230217</td><td>Uppgift 6 är för ingående på utmattning för kursen</td></tr>
+          <tr><td>210911 · FX 211014</td><td>Ej uppgift 6</td></tr>
+          <tr><td>190112 · FX 190219</td><td>Ej knäckning i uppgift 2, ej uppgift 6</td></tr>
+          <tr><td>180113 · FX 180220</td><td>Ej uppgift 6</td></tr>
+          <tr><td>170114 · FX 170217</td><td>Ej uppgift 4 och 6</td></tr>
+          <tr><td>160115 · FX 160222</td><td>Ej uppgift 4, 5 och 6</td></tr>
+        </table>
+        <ul><li>Strukna uppgifter är redan borta ur planen. Allt annat på de här tentorna gäller för SE1021.</li></ul>
+      </div>
+
+      <div class="card">
+        <h3>Mönstret på de sju tentorna</h3>
+        <ul>
+          <li><b>U1</b> har varit en stånguppgift på alla sju, oftast en stel bom som hänger i stänger. Jämvikt, kompatibilitet, Hooke. Sitter rutinen är det säkra poäng.</li>
+          <li><b>U3</b> har varit en balk på alla sju: elastiska linjen, elementarfall, statiskt obestämt eller T/M-diagram.</li>
+          <li><b>U2</b> växlar mellan vridning, balk och stänger. <b>U4-U5</b> är 3D: töjningsgivare, generaliserade Hooke, Mohr, von Mises/Tresca, tryckkärl och böjning plus vridning.</li>
+          <li><b>U6</b> är brottmekanik eller utmattning och stryks. Men båda ingår i SE1021 (EX 2.12 och andra beräkningsuppgiften), så träna dem med EX 2.12 och de handskrivna lösningarna till 2019-04-17 U6 och 2022-01-14 U6 i projektet.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Långa listan (SE1010/SE1020)</h3>
+        <ul>
+          <li>43 tentor och runt 30 FX sedan 2004. Alla på 19 dagar är över 200 timmar, så planen tar SE1021-lärarnas 14 fullt ut plus två extra genrep. Resten går att bocka längre ner.</li>
+          <li>Hoppa över uppgifter om <b>knäckning</b>, <b>kompositer</b> (ortotropt material) och <b>böjskjuvspänningar</b>. De finns inte i SE1021:s schema.</li>
+          <li>Från HT23 har tentorna en Del1 och en Del2 (2024-tentorna). 2020-04-17 till 2021-04-09 skrevs på distans med individuella varianter, lösningen gäller varianten som visas.</li>
+          <li>2016-03-15 och äldre saknar lösningar på sidan, ta dem sist. Läs <b>"Hur vi tänkte &amp; hur det gick"</b> (2022-01-14, 2020-01-11) och <b>"Lärarnas kommentarer"</b> (2017-04-11 och 2017-01-14, alltså din 170114).</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>DS: så använder du dem</h3>
+        <ul>
+          <li>Enklaste slaget. De testar begreppen från föreläsningarna, räknandet ska inte vara det svåra. DS-1 kommer först i kursen och DS-4 sist.</li>
+          <li>Facit finns bara till några, med flit. Rätta själv: stämmer jämvikten för varje del och för helheten? Stämmer geometrin? Räkna ut mer än det som efterfrågas, en rätt lösning uppfyller alltid alla krav.</li>
+          <li>Osäker på ett begrepp? Plugga begreppet (GH, föreläsningen, <a href="https://canvas.kth.se/courses/41559/files/6719270?wrap=1" target="_blank" rel="noopener">begreppsordlistan</a>) i stället för att räkna fler tal.</li>
+          <li>Facit eller genomgång finns till DS-1 2019 och 2021, DS-2 2020 och 2021, DS-3 2020 och 2021 samt DS-4 2020 och 2021 (orange länkar i listan).</li>
+        </ul>
+      </div>
+
+      <div class="card hot">
+        <h3>Om du hamnar efter</h3>
+        <ul>
+          <li>Det som inte blev gjort dyker upp i Idag-rutan under "Kvar från tidigare". Ta det först nästa pass.</li>
+          <li>Stryk hellre en DS än en tentauppgift, och hellre en FX-uppgift än ett genrep.</li>
+          <li>Rätta alltid med kursens skala (6/5/4/3/0) och skriv felet i felboken: jämvikt, tecken, enhet eller algebra?</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="part" id="plan">
+    <h2>Dag för dag</h2>
+    <p class="partsub">Tiderna är förslag som passar runt LAB1, CE och labbass. Minuterna är grova: ca 50 min per tentauppgift inklusive rättning, 40 per FX-uppgift, 20 per DS.</p>
+    <div class="days" id="days"></div>
+  </section>
+
+  <section class="part" id="tentor">
+    <h2>De 14 tentorna</h2>
+    <p class="partsub">7 tentor (6 uppgifter, 5 h) och 7 FX (2 uppgifter, 2 h, båda nöjaktigt lösta ger E). Tentor och lösningar ligger i Hållf-projektet och på <a href="https://canvas.kth.se/courses/63794/pages/extentor" target="_blank" rel="noopener">Extentor-sidan</a>. Det som stryks för SE1021 är överstruket.</p>
+    <div class="exams" id="exams"></div>
+  </section>
+
+  <section class="part" id="ds">
+    <h2>Diagnostiska skrivningar</h2>
+    <p class="partsub">50 skrivningar från SE1010/SE1020. De 24 senaste ligger i planen (heldragen ram), de äldre är extra (streckad). Klicka på årtalet för att bocka, på ↗ för att öppna på Canvas (KTH-inloggning).</p>
+    <div id="dslist"></div>
+  </section>
+
+  <section class="part pool" id="extra">
+    <h2>Resten av långa listan</h2>
+    <p class="partsub">Tentorna som inte står på SE1021:s sida. En bock per hel tenta. Heldragen ram har lösning, streckad saknar.</p>
+    <div id="pool"></div>
+  </section>
+
+  <details class="after" id="exlist">
+    <summary><h2>EX-övningarna</h2><span class="hint">gamla ikapplistan v35-41, fäll ut</span></summary>
+    <p class="partsub">Övningslistan från kursprogrammet, precis som förut. Dina gamla bockar ligger kvar.</p>
+    <div id="list"></div>
+  </details>
+
+</main>
 
 <footer>
-  Uppgifterna kommer från kursprogrammets detaljschema. Tiderna är grova uppskattningar för hela block, kärnuppgifterna brukar gå fortast eftersom de liknar övningsexemplen. Bockarna sparas automatiskt i webbläsaren på den enhet du använder, så ladda om hur mycket du vill. Version 2.
+  Källor: SE1021:s Extentor-sida, tentalistan och DS-sidan på Canvas, kursprogrammet 2026 och tentorna i Hållf-projektet. Tiderna är uppskattningar. Bockarna sparas automatiskt i webbläsaren på den enhet du använder (mobil och dator räknar var för sig), och de gamla från ikapplistan följer med. Version 3.
 </footer>
 
 </div>
-
 <script>
 "use strict";
 
-const DEADLINES = {
-  ks:    { date: new Date(2026,8,22), label:"tis 22/9 kl 15:15 · sal E3" },
-  tenta: { date: new Date(2026,9,19), label:"mån 19/10 kl 8-13" }
+/* ================= tentorna på SE1021:s Extentor-sida ================= */
+/* skip = struken för SE1021 enligt lärarnas kommentar */
+const EXAMS = [
+ { id:"230414", kind:"T", title:"Tenta 2023-04-14", meta:"lösning i projektet (U4 även handskriven)", mock:"Genrep 1 · mån 12/10",
+   comment:"Ej uppgift 6",
+   probs:[
+    {u:1, tag:"stång", d:"Stel bom i tre olika stänger: bommens rotation, välj parametern så den blir noll"},
+    {u:2, tag:"balk", d:"Elastiskt-plastisk balk med uppmätt kraft-nedböjning: uppskatta E och σs"},
+    {u:3, tag:"balk", d:"Fritt upplagd, fast inspänd balk med ändmoment: var och hur stor är största utböjningen"},
+    {u:4, tag:"effektivsp.", d:"Tryckkärl med oönskat vridmoment: förvridning vid begynnande plasticering"},
+    {u:5, tag:"spänning", d:"Samma cylinder: vilken skjuvspänning vrider huvudriktningarna 35° (+2 p bonus)"},
+    {u:6, tag:"brott", d:"Kantsprickor och urfräsning, säkerhet mot plasticering", skip:true}
+ ]},
+ { id:"230113", kind:"T", title:"Tenta 2023-01-13", meta:"lösning i projektet", mock:"Genrep 2 · ons 14/10",
+   comment:"Uppgift 6 är för ingående på utmattning för kursen",
+   probs:[
+    {u:1, tag:"stång", d:"Stel bom i tre lika stänger, kraft längst ut: hur mycket längre blir vänstra stången"},
+    {u:2, tag:"vridning", d:"Två axlar med olika G och τs: moment för begynnande och full plasticering"},
+    {u:3, tag:"balk", d:"Balk i två delar med olika EI och utbredd last: M- och T-diagram"},
+    {u:4, tag:"effektivsp.", d:"Axeltapp med vridmoment och kraft, 1 mm utböjning: största Mv enligt von Mises"},
+    {u:5, tag:"töjning", d:"Skiva med två uppmätta töjningstillstånd: största huvudspänning när båda verkar"},
+    {u:6, tag:"utmattning", d:"Avsmalnande skiva med hål, säkerhet mot utmattning", skip:true}
+ ]},
+ { id:"210911", kind:"T", title:"Tenta 2021-09-11", meta:"lösning i projektet (U3 och U4 även handskrivna)",
+   comment:"Ej uppgift 6",
+   probs:[
+    {u:1, tag:"stång", d:"Stel triangulär skiva i tre stänger: rotation och hur mycket hörnet sjunker"},
+    {u:2, tag:"vridning", d:"Axel inuti tunnväggigt rör, stel gavel: största vridskjuvspänning i båda"},
+    {u:3, tag:"balk", d:"Balk på tre stöd, en laser mäter vinkeln: bestäm lasten P"},
+    {u:4, tag:"töjning", d:"Polymerskiva med två sneda töjningsgivare: förlängningen (+1 p bonus: ν)"},
+    {u:5, tag:"effektivsp.", d:"Rör kring stel axel med drag och vridning: Tresca på ytan"},
+    {u:6, tag:"brott", d:"Balk i fyrpunktsböj med kantsprickor", skip:true}
+ ]},
+ { id:"190112", kind:"T", title:"Tenta 2019-01-12", meta:"lösning i projektet",
+   comment:"Ej knäckning på uppgift 2, ej uppgift 6",
+   probs:[
+    {u:1, tag:"stång", d:"Stång med hängande massa och töjningsgivare i tre tillstånd: bestäm M (+1 p bonus)"},
+    {u:2, tag:"stång", d:"Stel skiva med två stag: stångkrafterna. Hoppa över knäckningsdelen"},
+    {u:3, tag:"balk", d:"För lång distans kläms in mellan två balkar: klämkraften och var den blir minst"},
+    {u:4, tag:"böj+vrid", d:"Fyrkantsrör med excentrisk kraft: hur mycket lastpunkten flyttas nedåt"},
+    {u:5, tag:"effektivsp.", d:"Stålskiva i plan spänning, Tresca med n = 2: största σ0 och största huvudtöjning"},
+    {u:6, tag:"brott", d:"Halvelliptisk spricka i fyrkantsröret", skip:true}
+ ]},
+ { id:"180113", kind:"T", title:"Tenta 2018-01-13", meta:"tenta och lösning i samma pdf",
+   comment:"Ej uppgift 6",
+   probs:[
+    {u:1, tag:"stång", d:"Stel bom i tre stänger av olika längd: var P ska sitta så bommen inte roterar"},
+    {u:2, tag:"balk", d:"Fritt upplagd balk med linjärt varierande last: T/M-diagram och största böjspänning"},
+    {u:3, tag:"balk", d:"Fast inspänd balk på två stöd där ena sitter för lågt: reaktionen i mitten"},
+    {u:4, tag:"töjning", d:"Helixlinje på en vriden axel: hur mycket längre blir den"},
+    {u:5, tag:"effektivsp.", d:"Givet spänningstillstånd: största σ0 mot flytning eller brott, och vilket som dimensionerar"},
+    {u:6, tag:"brott", d:"Tjockväggigt rör med ytspricka och CT-provstav", skip:true}
+ ]},
+ { id:"170114", kind:"T", title:"Tenta 2017-01-14", meta:"lösning i projektet · läs Lärarnas kommentarer efteråt",
+   comment:"Ej uppgift 4 och 6",
+   probs:[
+    {u:1, tag:"stång", d:"Tre elastiskt-idealplastiska stänger: last vid begynnande plasticering och vid kollaps"},
+    {u:2, tag:"böj+vrid", d:"Rundstång bockad i rät vinkel, kraft vinkelrätt mot planet: nedböjningen"},
+    {u:3, tag:"balk", d:"Fast inspänd, fritt upplagd balk med linjärt varierande last: vinkeln vid högra stödet"},
+    {u:4, tag:"komposit", d:"Kompositlamell med ortotropt material", skip:true},
+    {u:5, tag:"töjning", d:"Axeltapp med drag och vridning, två töjningsgivare: bestäm P och Mv"},
+    {u:6, tag:"brott", d:"Halvcirkelformade ytsprickor, tillåten spricklängd", skip:true}
+ ]},
+ { id:"160115", kind:"T", title:"Tenta 2016-01-15", meta:"lösning i projektet",
+   comment:"Ej uppgift 4, 5 och 6",
+   probs:[
+    {u:1, tag:"stång", d:"Stel bom med två sneda stänger där den ena värms: toppens horisontella förskjutning"},
+    {u:2, tag:"balk", d:"IPE200, fast inspänd och fritt upplagd: T/M-diagram och största böjspänning"},
+    {u:3, tag:"balk", d:"Konsolbalk plus fritt upplagd balk på spetsen: utböjningen i B och C"},
+    {u:4, tag:"komposit", d:"Fiberkomposit, brottvillkor", skip:true},
+    {u:5, tag:"böjskjuv", d:"Axeltapp med tvärkraft och vridning", skip:true},
+    {u:6, tag:"brott", d:"Konsolbalk med två kantsprickor", skip:true}
+ ]}
+];
+
+const FXS = [
+ { id:"230523", kind:"F", title:"FX 2023-05-23", meta:"hör till 230414", probs:[
+    {u:1, tag:"balk", d:"Fritt upplagd balk med P i mitten och randmoment: var och hur stor är största utböjningen"},
+    {u:2, tag:"effektivsp.", d:"Rundstång med förvriden stel gavel: hur långt den kan dras innan plasticering"} ]},
+ { id:"230217", kind:"F", title:"FX 2023-02-17", meta:"hör till 230113", probs:[
+    {u:1, tag:"stång", d:"Stel bom i tre stänger med olika tvärsnitt: hur mycket kortare blir vänstra"},
+    {u:2, tag:"balk", d:"Balk i två delar med utbredd last 3Q: M- och T-diagram, kolla randvärdena"} ]},
+ { id:"211014", kind:"F", title:"FX 2021-10-14", meta:"hör till 210911", probs:[
+    {u:1, tag:"balk", d:"Balk på tre stöd med triangellast: rotationen vid vänstra stödet"},
+    {u:2, tag:"töjning", d:"Rör kring stel axel med drag och vridning, en töjningsgivare: längdändringen"} ]},
+ { id:"190219", kind:"F", title:"FX 2019-02-19", meta:"hör till 190112", probs:[
+    {u:1, tag:"stång", d:"Halvcirkelskiva i två stänger: stångkrafter och P-gränser utan plasticering"},
+    {u:2, tag:"balk", d:"IPE200 med utbredd last, fast inspänd och fritt upplagd: σ(z) och max vid infästningen"} ]},
+ { id:"180220", kind:"F", title:"FX 2018-02-20", meta:"hör till 180113", probs:[
+    {u:1, tag:"balk", d:"Fast inspänd balk, stödet för högt monterat plus en kraft: reaktionen"},
+    {u:2, tag:"töjning", d:"Tunnväggigt rör med normalkraft och vridmoment: normaltöjningen i en given riktning"} ]},
+ { id:"170217", kind:"F", title:"FX 2017-02-17", meta:"hör till 170114", probs:[
+    {u:1, tag:"stång", d:"Två stänger, knuten låst vertikalt: den vertikala reaktionskraften"},
+    {u:2, tag:"balk", d:"Rundstång bockad i rät vinkel, kraft i vinkelns plan: utböjningen vid kraften"} ]},
+ { id:"160222", kind:"F", title:"FX 2016-02-22", meta:"hör till 160115", probs:[
+    {u:1, tag:"balk", d:"Fast inspänd, fritt upplagd balk med utbredd last: stödreaktion och M-diagram"},
+    {u:2, tag:"töjning", d:"Termoelastiskt block i ett spår värms: alla dimensionsändringar"} ]}
+];
+
+/* handskrivna lösningar som ligger i projektet (U6-typerna som annars stryks) */
+const XTRA = [
+ { id:"X:190417:6", ref:"2019-04-17 U6", tag:"utmattning", d:"Var ett svarvat spår får sitta utan att utmattningen blir sämre", min:50 },
+ { id:"X:220114:6", ref:"2022-01-14 U6", tag:"brott", d:"Sprickor, säkerhet n = 2 mot spricktillväxt", min:50 },
+ { id:"X:200111:1", ref:"2020-01-11 U1", tag:"stång", d:"Skiva i tre stänger, placering så den inte roterar", min:50 },
+ { id:"X:200111:3", ref:"2020-01-11 U3", tag:"balk", d:"Balk med randmoment via elementarfall", min:50 }
+];
+
+/* ================= diagnostiska skrivningar (Canvas fil-id) ================= */
+const DS = {
+ 1:{2011:6718882,2012:6718791,2013:6718983,2014:6719054,2015:6718910,2016:6718798,2017:6718759,2018:6719044,2019:6719076,2020:6718903,2021:6719031,2022:6718752,2023:6949044},
+ 2:{2011:6719254,2012:6718742,2013:6719069,2014:6719002,2015:6718925,2016:6719108,2017:6718967,2018:6719086,2019:6719116,2020:6719019,2021:6718966,2022:7035112,2023:7035113},
+ 3:{2011:6719348,2012:6719349,2013:6718817,2014:6719300,2015:6718652,2016:6719301,2017:6719017,2018:6719065,2019:6718781,2020:6719151,2021:6718744,2022:7035117},
+ 4:{2011:6719273,2012:6719350,2013:6718646,2014:6719261,2015:6718747,2016:6718807,2017:6718746,2018:6719226,2019:6719059,2020:6719004,2021:6719352,2022:7035127}
+};
+const DS_PLANNED_FROM = {1:2018, 2:2018, 3:2017, 4:2017};
+const DS_KEYS = {
+ "1:2019":{t:"facit", u:"https://canvas.kth.se/courses/41559/files/6718777?wrap=1"},
+ "1:2021":{t:"video", u:"https://play.kth.se/media/DS1-2021-L%C3%B6sn/0_le57p8cd"},
+ "2:2020":{t:"facit", u:"https://canvas.kth.se/courses/41559/files/6718659?wrap=1"},
+ "2:2021":{t:"video", u:"https://play.kth.se/media/DS2-2021-L%C3%B6sn/0_4kiaayi3"},
+ "3:2020":{t:"video", u:"https://play.kth.se/media/DS3+2020+l%C3%B6sningsf%C3%B6rslag/0_5t6uoud7"},
+ "3:2021":{t:"facit", u:"https://canvas.kth.se/courses/41559/files/6719418?wrap=1"},
+ "4:2020":{t:"video", u:"https://play.kth.se/media/DS4-2020-L%C3%B6sn/0_w9n4q6ur"},
+ "4:2021":{t:"facit", u:"https://canvas.kth.se/courses/41559/files/6719341?wrap=1"}
 };
 
+/* ================= resten av långa listan, en bock per hel tenta ================= */
+const POOL_SOL = [
+ ["240405","2024-04-05 (Del1+Del2)"],["240507","FX 2024-05-07"],
+ ["240113","2024-01-13 (Del1+Del2)"],["240223","FX 2024-02-23"],
+ ["231019","2023-10-19 Del1 (KS)"],
+ ["220422","2022-04-22"],["220607","FX 2022-06-07"],
+ ["220114","2022-01-14 + hur vi tänkte"],["220222","FX 2022-02-22"],
+ ["210409","2021-04-09 (distans)"],["210520","FX 2021-05-20"],
+ ["210115","2021-01-15 (distans)"],["210301","FX 2021-03-01"],
+ ["200417","2020-04-17 (distans)"],["200612","FX 2020-06-12"],
+ ["200111","2020-01-11 + hur vi tänkte"],["200214","FX 2020-02-14"],
+ ["190417","2019-04-17"],["190528","FX 2019-05-28"],
+ ["180404","2018-04-04"],
+ ["170411","2017-04-11 + lärarnas komm."],["170522","FX 2017-05-22"]
+];
+const POOL_NOSOL = [
+ "2016-03-15","FX 2016-04-22","2015-06-10","FX 2015-08-28","2015-04-07","FX 2015-05-13",
+ "2015-01-17","FX 2015-02-27","2014-05-22","FX 2014-08-25","2014-01-17","FX 2014-02-24",
+ "2013-06-03","FX 2013-08-28","2012-12-10","FX 2013-01-10","2012-06-11","FX 2012-08-22",
+ "2011-12-16","FX 2012-01-23","2011-08-27","2011-06-08","2010-12-14","2010-06-07","FX 2010-08-30",
+ "2009-12-14","2009-06-01","FX 2009-08-26","2008-12-19","FX 2009-01-28","2008-05-29","FX 2008-08-25",
+ "2007-12-21","FX 2008-01-21","2007-06-04","2006-12-13","2005-12-14","2005-03-17","2004-12-09"
+];
+
+/* ================= egna pass (utan tentauppgift) ================= */
+const CUSTOM = {
+ "P:0930:info":   {ref:"Läs infon",      d:"Viktigt att veta, längre ner på sidan", min:10},
+ "P:1005:tryck":  {ref:"Förläs tryckkärl",   d:"Tryckkärl: GH 9.2.9-9.2.10 och GH 11-11.1 (ej 11.1.1-2) plus slidesen", min:90},
+ "P:1012:ratta":  {ref:"Rätta genrep 1",    d:"230414 med skalan 6/5/4/3/0, felbok per uppgift", min:120},
+ "P:1013:gorom":  {ref:"Gör om missarna",   d:"Missarna från genrep 1, från blankt papper", min:60},
+ "P:1014:ratta":  {ref:"Rätta genrep 2",    d:"230113 med skalan 6/5/4/3/0, felbok per uppgift", min:120},
+ "P:1015:ratta":  {ref:"Rätta genrep 3",    d:"2022-04-22 mot lösningsförslaget, felbok", min:90},
+ "P:1016:ratta":  {ref:"Rätta FX-tentan",    d:"FX-tentan, felbok", min:40},
+ "P:1017:fs":     {ref:"FS-flikar",       d:"Flikar och understrykningar klara, bläddra igenom en gång", min:40},
+ "P:1018:felbok": {ref:"Felboken",   d:"Läs felboken, räkna max två lugna tal du kan. Inget nytt", min:90},
+ "P:1018:packa":  {ref:"Packa väskan",    d:"FS, tabeller, miniräknare, leg, pennor, linjal. Kolla sal i TentaAdmin", min:15}
+};
+
+/* ================= dagsplanen ================= */
+const T = (e, ...us) => us.map(u => "T:" + e + ":" + u);
+const F = (e, ...us) => us.map(u => "F:" + e + ":" + u);
+
+const PLAN = [
+ { date:"2026-09-30", day:"ons 30/9", phase:"start", note:"Ikväll, bara om du orkar.", slots:[
+   { when:"kväll", what:"Kom igång", ids:["P:0930:info","DS:1:2023"] } ]},
+ { date:"2026-10-01", day:"tor 1/10", phase:"typvis", note:"LAB1 10-11 på TR8 (A-L), CE 13-17.", slots:[
+   { when:"08:00-09:45", what:"Töjningsgivare", ids:[...T("210911",4), ...F("211014",2)] },
+   { when:"11:15-12:00", what:"Efter labben", ids:["DS:1:2022","DS:1:2021"] },
+   { when:"19:30-20:30", what:"Stång", ids:T("210911",1) } ]},
+ { date:"2026-10-02", day:"fre 2/10", phase:"typvis", note:"Labbass 08-12, CE 13-17. Kvällen fri.", slots:[
+   { when:"lunch", what:"Två DS", ids:["DS:1:2020","DS:1:2019"] } ]},
+ { date:"2026-10-03", day:"lör 3/10", phase:"typvis", note:"Plugget på förmiddagen, eftermiddagen fri.", slots:[
+   { when:"fm, ca 3,5 h", what:"Stångdagen", ids:[...T("190112",1,2), ...T("180113",1), ...T("170114",1)] },
+   { when:"em", what:"En DS", ids:["DS:1:2018"] } ]},
+ { date:"2026-10-04", day:"sön 4/10", phase:"typvis", note:"Bara förmiddagen idag.", slots:[
+   { when:"09:30-12:20", what:"Stång klart + DS", ids:[...T("160115",1), ...F("230217",1), ...F("190219",1), "DS:2:2023","DS:2:2022"] } ]},
+ { date:"2026-10-05", day:"mån 5/10", phase:"typvis", note:"Lektion 13-15 (tryckkärl). CE-postern upp senast 18:00.", slots:[
+   { when:"08:30-10:00", what:"Inför lektionen", ids:["P:1005:tryck"] },
+   { when:"10:00-11:45", what:"Vridning + böjning och vridning", ids:[...T("210911",2), ...T("170114",2)] },
+   { when:"19:30-20:50", what:"FX 170217 på tid, om postern är inne", ids:F("170217",1,2) } ]},
+ { date:"2026-10-06", day:"tis 6/10", phase:"typvis", note:"CE 8-12, lektion 13-15 (rör och tryckkärl).", slots:[
+   { when:"15:15-17:10", what:"EX 2.8 + två DS", ids:["2.8:1","2.8:3","2.8:11","DS:2:2021","DS:2:2020"] },
+   { when:"19:30-21:15", what:"Balk", ids:[...T("210911",3), ...T("190112",3)] } ]},
+ { date:"2026-10-07", day:"ons 7/10", phase:"typvis", note:"CE 8-12, lektion 13-15 (plasticitet, utmattning).", slots:[
+   { when:"15:15-16:30", what:"EX 2.11 + DS", ids:["2.11:1","2.11:7","DS:2:2019"] },
+   { when:"19:30-21:15", what:"Balk", ids:T("180113",2,3) } ]},
+ { date:"2026-10-08", day:"tor 8/10", phase:"typvis", note:"Lektion 10-12 (utmattning, statiskt brott). Imorgon CE final.", slots:[
+   { when:"08:30-09:45", what:"Balk + DS", ids:[...T("170114",3), "DS:2:2018"] },
+   { when:"13:00-16:00", what:"Utmattning och brottmekanik", ids:["2.12:32","2.12:41","2.12:42","2.12:13","2.12:17","X:190417:6"] },
+   { when:"kväll", what:"Fixa kläder och poster till CE final. Ingen Hållf.", ids:[] } ]},
+ { date:"2026-10-09", day:"fre 9/10", phase:"typvis", note:"CE final seminar 8-17.", slots:[], rest:"Ingen Hållf idag. Repetitionslektionen du missar ersätts av helgens pass." },
+ { date:"2026-10-10", day:"lör 10/10", phase:"typvis", note:"Två pass idag.", slots:[
+   { when:"fm, ca 2,5 h", what:"Effektivspänning", ids:[...T("210911",5), ...T("190112",5), ...T("180113",5)] },
+   { when:"14:00-16:00", what:"Töjning + DS", ids:[...T("180113",4), ...T("170114",5), "DS:3:2022"] } ]},
+ { date:"2026-10-11", day:"sön 11/10", phase:"typvis", note:"Sista typvisa dagen.", slots:[
+   { when:"10:00-12:45", what:"Balkarna på FX", ids:[...F("230523",1), ...F("211014",1), ...F("190219",2), ...F("180220",1)] },
+   { when:"14:00-16:00", what:"Balk + DS", ids:[...T("160115",2,3), "DS:3:2021"] } ]},
+ { date:"2026-10-12", day:"mån 12/10", phase:"tentavecka", note:"Kvällen fri.", slots:[
+   { when:"09:00-13:10", what:"Genrep 1: hela 230414 på tid. Bara FS, tabeller och räknare", ids:T("230414",1,2,3,4,5) },
+   { when:"14:00-16:00", what:"Rätta", ids:["P:1012:ratta"] } ]},
+ { date:"2026-10-13", day:"tis 13/10", phase:"tentavecka", note:"Kvällen fri.", slots:[
+   { when:"09:00-09:40", what:"Uppvärmning", ids:["DS:3:2020","DS:3:2019"] },
+   { when:"09:45-10:45", what:"Gör om", ids:["P:1013:gorom"] },
+   { when:"11:00-12:20", what:"FX-resten", ids:[...F("230217",2), ...F("160222",1)] },
+   { when:"13:00-16:00", what:"FX-resten + böjning och vridning", ids:[...F("160222",2), ...F("180220",2), ...F("230523",2), ...T("190112",4)] } ]},
+ { date:"2026-10-14", day:"ons 14/10", phase:"tentavecka", note:"Kvällen fri.", slots:[
+   { when:"09:00-13:10", what:"Genrep 2: hela 230113 på tid", ids:T("230113",1,2,3,4,5) },
+   { when:"14:00-16:20", what:"Rätta + DS", ids:["P:1014:ratta","DS:3:2018"] } ]},
+ { date:"2026-10-15", day:"tor 15/10", phase:"tentavecka", note:"Kvällen fri.", slots:[
+   { when:"09:00-13:00", what:"Genrep 3: 2022-04-22 från långa listan. Stryk knäckning, komposit och böjskjuv", ids:["E:220422"] },
+   { when:"14:00-15:50", what:"Rätta + DS", ids:["P:1015:ratta","DS:3:2017"] } ]},
+ { date:"2026-10-16", day:"fre 16/10", phase:"tentavecka", note:"CE Stage 4 ska in senast 17:00.", slots:[
+   { when:"09:00-11:40", what:"FX-tenta 2022-06-07 på tid (2 h) och rätta", ids:["E:220607","P:1016:ratta"] },
+   { when:"13:00-14:30", what:"Brottmekanik + DS", ids:["X:220114:6","DS:4:2022","DS:4:2021"] },
+   { when:"15:00-17:00", what:"CE Stage 4: självutvärdering och loggbok", ids:[] } ]},
+ { date:"2026-10-17", day:"lör 17/10", phase:"nedvarvning", note:"Kvällen fri. Tentan är måndag kl 8, så ta det lugnt.", slots:[
+   { when:"12:30-14:40", what:"Lätt dag", ids:["DS:4:2020","DS:4:2019","DS:4:2018","DS:4:2017","P:1017:fs"] } ]},
+ { date:"2026-10-18", day:"sön 18/10", phase:"nedvarvning", note:"Inget nytt idag. Tidig kväll.", slots:[
+   { when:"10:00-12:00", what:"Sista genomgången", ids:["P:1018:felbok","P:1018:packa"] } ]},
+ { date:"2026-10-19", day:"mån 19/10", phase:"tenta", note:"Tenta 8-13. Var på plats 07:40.", slots:[],
+   rest:"Läs alla sex uppgifter först och börja med den du känner igen, ofta U1. Rita jämvikten, sätt enhet på svaret och kolla rimligheten. Har du följt planen har du räknat 46 tentauppgifter. Du kan det här." }
+];
 const WEEKS = [
  { w:"Vecka 35", d:"24-28 aug", theme:"Stång, spänning, jämvikt", scope:"ikapp", blocks:[
    { id:"b1", prio:1, title:"Friläggning och jämvikt", src:"EX 2.1", min:150,
@@ -205,7 +599,7 @@ const WEEKS = [
      desc:"Skjuvspänning och vridvinkel, bestämt och obestämt. Samma tankeschema som dragstången, fast med moment.",
      gr:[{b:"2.6",core:[12,14],extra:[1,2,6,7,8,3,18,22]}] }
  ]},
- { w:"Vecka 37", d:"7-11 sep, denna vecka", theme:"Balkböjning", scope:"ikapp", blocks:[
+ { w:"Vecka 37", d:"7-11 sep", theme:"Balkböjning", scope:"ikapp", blocks:[
    { id:"b7", prio:1, title:"T- och M-diagram", src:"EX 2.4", min:150,
      desc:"Snittstorheter längs balken. P4-klassikern där flest KS-poäng brukar tappas, rita tills det sitter i handen.",
      gr:[{b:"2.4",core:[19,20,28,29],extra:[16,18,22,23]}] },
@@ -254,30 +648,137 @@ const WEEKS = [
  ]}
 ];
 
-const KEY = "se1021-ikapplistan-v1";
-const done = new Set();
-const allBlocks = WEEKS.flatMap(w => w.blocks.map(b => ({...b, scope:w.scope})));
-const exOf = b => b.gr.flatMap(g => [...g.core, ...g.extra].map(n => g.b + ":" + n));
+/* ================= register över allt som går att bocka ================= */
+const ITEMS = new Map();
+const add = (id, o) => ITEMS.set(id, o);
 
-const SCOPES = [
-  { id:"a", title:"Ikapp", when:"vecka 35-37",
-    blocks: allBlocks.filter(b => b.scope === "ikapp") },
-  { id:"b", title:"Till KS", when:"", deadline:"ks",
-    blocks: allBlocks.filter(b => b.scope !== "tenta") },
-  { id:"c", title:"Till tentan", when:"", deadline:"tenta",
-    blocks: allBlocks }
-];
+EXAMS.forEach(e => e.probs.forEach(p => { if (!p.skip)
+  add("T:" + e.id + ":" + p.u, {kind:"T", ref:e.id + " U" + p.u, short:"U" + p.u, d:p.d, tag:p.tag, min:50}); }));
+FXS.forEach(e => e.probs.forEach(p =>
+  add("F:" + e.id + ":" + p.u, {kind:"F", ref:"FX " + e.id + " U" + p.u, short:"U" + p.u, d:p.d, tag:p.tag, min:40})));
+XTRA.forEach(x => add(x.id, {kind:"X", ref:x.ref, short:x.ref, d:x.d, tag:x.tag, min:x.min}));
+Object.keys(DS).forEach(s => Object.keys(DS[s]).forEach(y =>
+  add("DS:" + s + ":" + y, {kind:"DS", ref:"DS-" + s + " " + y, short:y, s:+s, y:+y, file:DS[s][y],
+    planned: +y >= DS_PLANNED_FROM[s], min:20})));
+POOL_SOL.forEach(([c, label]) => add("E:" + c, {kind:"E", ref:label, short:label, sol:true,
+  min: label.startsWith("FX") ? 120 : (label.includes("KS") ? 60 : 240), d:"hel tenta från långa listan"}));
+POOL_NOSOL.forEach(label => add("N:" + label, {kind:"N", ref:label, short:label, sol:false,
+  min: label.startsWith("FX") ? 120 : 240}));
+Object.entries(CUSTOM).forEach(([id, c]) => add(id, {kind:"P", ref:c.ref, short:c.ref, d:c.d, min:c.min}));
+WEEKS.forEach(w => w.blocks.forEach(b => {
+  const n = b.gr.reduce((a, g) => a + g.core.length + g.extra.length, 0);
+  b.gr.forEach(g => [...g.core, ...g.extra].forEach(k =>
+    add(g.b + ":" + k, {kind:"EX", ref:"EX " + g.b + "." + k, short:g.b + ":" + k, d:b.title,
+      min:Math.round(b.min / n), extra:g.extra.includes(k)})));
+}));
 
-/* ---------- bygg diagram ---------- */
-const C = 2 * Math.PI * 54;
-document.getElementById("charts").innerHTML = SCOPES.map(s => {
-  let when = s.when;
-  if (s.deadline) {
-    const dl = DEADLINES[s.deadline];
-    const days = Math.round((dl.date - new Date()) / 864e5);
-    when = dl.label + " · om " + days + (days === 1 ? " dag" : " dagar");
+const idsOf = kind => [...ITEMS].filter(([, v]) => v.kind === kind).map(([k]) => k);
+
+/* var i planen varje uppgift ligger */
+const PLANNED_ON = new Map();
+PLAN.forEach(d => d.slots.forEach(s => s.ids.forEach(id => PLANNED_ON.set(id, d))));
+
+/* ================= datum ================= */
+const pad = n => String(n).padStart(2, "0");
+const keyOf = d => d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
+const NOW = (() => {
+  const q = new URLSearchParams(location.search).get("idag");   // för test: ?idag=2026-10-05
+  if (q && /^\d{4}-\d{2}-\d{2}$/.test(q)) { const [y, m, d] = q.split("-").map(Number); return new Date(y, m - 1, d, 12); }
+  return new Date();
+})();
+const TODAY = keyOf(NOW);
+const dayDate = k => { const [y, m, d] = k.split("-").map(Number); return new Date(y, m - 1, d); };
+const EXAM_DAY = new Date(2026, 9, 19);
+
+/* ================= små byggstenar ================= */
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmtMin = m => m < 60 ? m + " min" : (Math.round(m / 30) / 2).toLocaleString("sv-SE") + " h";
+const dsUrl = it => "https://canvas.kth.se/courses/41559/files/" + it.file + "?wrap=1";
+
+function chip(id, label, cls) {
+  const it = ITEMS.get(id);
+  const title = it ? (it.ref + (it.d ? ": " + it.d : "")) : id;
+  return `<button class="chip${cls ? " " + cls : ""}" data-id="${esc(id)}" aria-pressed="false" title="${esc(title)}">${esc(label)}</button>`;
+}
+function dsLinks(id) {
+  const it = ITEMS.get(id);
+  const k = DS_KEYS[it.s + ":" + it.y];
+  return `<a href="${dsUrl(it)}" target="_blank" rel="noopener" aria-label="Öppna ${esc(it.ref)} på Canvas">↗</a>` +
+    (k ? `<a class="key" href="${k.u}" target="_blank" rel="noopener">${k.t}</a>` : "");
+}
+
+/* räknare som uppdateras vid varje klick */
+const COUNTERS = [];
+function counter(ids, cls) {
+  const i = COUNTERS.length;
+  COUNTERS.push({i, ids});
+  return `<span class="${cls}" data-counter="${i}">0/${ids.length}</span>`;
+}
+
+/* ================= balken ================= */
+function drawBeam() {
+  const small = window.matchMedia("(max-width:560px)").matches;   /* större text på mobilen */
+  const fs = small ? 19 : 11.5, fb = small ? 20 : 12.5;
+  const yA = small ? 22 : 34, yB = small ? 42 : 46, yArrow = small ? 50 : 54;
+  const start = new Date(2026, 8, 28), end = EXAM_DAY;
+  const X0 = 28, X1 = 692, span = (end - start) / 864e5;
+  const xOf = d => X0 + (X1 - X0) * Math.min(1, Math.max(0, ((d - start) / 864e5) / span));
+  const txt = (x, y, t, cls, anchor, size) =>
+    `<text class="lbl${cls ? " " + cls : ""}" x="${x}" y="${y}" text-anchor="${anchor || "middle"}" style="font-size:${size || fs}px">${t}</text>`;
+  const loads = [
+    {d:new Date(2026, 9, 1),  a:"LAB1", b:"1/10"},
+    {d:new Date(2026, 9, 5),  a:"Poster", b:"5/10"},
+    {d:new Date(2026, 9, 9),  a:"CE final", b:"9/10"}
+  ];
+  const g1 = xOf(new Date(2026, 9, 12)), g2 = xOf(new Date(2026, 9, 14));
+  const xt = xOf(new Date(NOW.getFullYear(), NOW.getMonth(), NOW.getDate()));
+  let s = `<defs>
+    <marker id="ahg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5d6b7a"/></marker>
+    <marker id="aha" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#e8650d"/></marker>
+  </defs>
+  <line x1="${X0}" y1="78" x2="${X1}" y2="78" stroke="#1c2430" stroke-width="3"/>`;
+  loads.forEach(l => { const x = xOf(l.d);
+    s += `<line x1="${x}" y1="${yArrow}" x2="${x}" y2="72" stroke="#5d6b7a" stroke-width="2" marker-end="url(#ahg)"/>` +
+      txt(x, yA, l.a) + txt(x, yB, l.b); });
+  const gm = (g1 + g2) / 2;
+  s += `<line x1="${g1}" y1="${yArrow - 4}" x2="${g1}" y2="72" stroke="#e8650d" stroke-width="2.5" marker-end="url(#aha)"/>
+    <line x1="${g2}" y1="${yArrow - 4}" x2="${g2}" y2="72" stroke="#e8650d" stroke-width="2.5" marker-end="url(#aha)"/>` +
+    txt(gm, small ? 20 : 24, "Genrep", "big", "middle", fb) + txt(gm, small ? 40 : 37, "12 + 14/10") +
+    `<line x1="${X1}" y1="${small ? 30 : 34}" x2="${X1}" y2="72" stroke="#e8650d" stroke-width="3" marker-end="url(#aha)"/>` +
+    txt(X1 + 8, small ? 20 : 24, small ? "Tenta" : "Tenta 19/10", "big", "end", fb) +
+    `<circle cx="${X1}" cy="88" r="7" fill="none" stroke="#1c2430" stroke-width="2.5"/>
+    <line x1="${X1 - 20}" y1="99" x2="${X1 + 20}" y2="99" stroke="#b9c4cf" stroke-width="2"/>`;
+  if (NOW < new Date(2026, 9, 20)) {
+    const xs = Math.min(xt, X1 - 24);
+    s += `<polygon points="${xs},80 ${xs - 12},100 ${xs + 12},100" fill="#1c2430"/>
+      <line x1="${xs - 20}" y1="102" x2="${xs + 20}" y2="102" stroke="#b9c4cf" stroke-width="2"/>` +
+      txt(Math.max(X0 + (small ? 40 : 6), xs), small ? 124 : 119, "idag " + NOW.getDate() + "/" + (NOW.getMonth() + 1), "ink");
   }
-  return `<div class="chart">
+  document.getElementById("beamsvg").innerHTML = s;
+}
+let beamT;
+window.addEventListener("resize", () => { clearTimeout(beamT); beamT = setTimeout(drawBeam, 150); });
+
+function drawCountdown() {
+  const t = new Date(NOW.getFullYear(), NOW.getMonth(), NOW.getDate());
+  const days = Math.round((EXAM_DAY - t) / 864e5);
+  const el = document.getElementById("countdown");
+  el.textContent = days > 1 ? days + " dagar kvar till tentan · mån 19/10 kl 8"
+    : days === 1 ? "Tentan är imorgon kl 8. Packa och sov."
+    : days === 0 ? "Tentadag! Lycka till."
+    : "Tentan är skriven.";
+}
+
+/* ================= munkarna ================= */
+const C = 2 * Math.PI * 54;
+const SCOPES = [
+  {id:"t",  title:"Tentauppgifter", when:"7 tentor, 2 är genrep", ids:idsOf("T")},
+  {id:"f",  title:"FX-uppgifter",   when:"7 FX à 2 uppgifter",   ids:idsOf("F")},
+  {id:"ds", title:"DS",             when:"",                     ids:idsOf("DS")},
+  {id:"ex", title:"EX-listan",      when:"gamla ikapplistan",    ids:idsOf("EX")}
+];
+function drawCharts() {
+  document.getElementById("charts").innerHTML = SCOPES.map(s => `<div class="chart">
     <h3>${s.title}</h3>
     <svg class="donut" viewBox="0 0 140 140" role="img" id="donut-${s.id}">
       <circle class="track" cx="70" cy="70" r="54"/>
@@ -286,127 +787,175 @@ document.getElementById("charts").innerHTML = SCOPES.map(s => {
       <text class="unit" x="70" y="92">kvar</text>
     </svg>
     <p class="sub" id="sub-${s.id}"></p>
-    <p class="when">${when}</p>
-  </div>`;
-}).join("");
-
-/* ---------- bygg listan ---------- */
-function chipsHTML(b) {
-  return b.gr.map(g =>
-    g.core.map(n => chip(g.b, n, false)).join("") +
-    g.extra.map(n => chip(g.b, n, true)).join("")
-  ).join("");
-}
-function chip(book, n, extra) {
-  const id = book + ":" + n;
-  return `<button class="chip${extra ? " extra" : ""}" data-ex="${id}" aria-pressed="false">${id}</button>`;
-}
-function blockHTML(b) {
-  const total = exOf(b).length;
-  const prioTag = b.prio === 1 ? `<span class="prio p1">Prio 1</span>`
-               : b.prio === 2 ? `<span class="prio p2">Prio 2</span>` : "";
-  const h = (b.min / 60).toLocaleString("sv-SE");
-  return `<div class="block" data-block="${b.id}">
-    <div class="bhead">
-      ${prioTag}
-      <h4>${b.title}</h4>
-      <span class="meta">${b.src} · ca ${h} h</span>
-      <span class="right">
-        <span class="count" id="cnt-${b.id}">0/${total}</span>
-        <button class="allbtn" data-block="${b.id}" id="all-${b.id}">bocka alla</button>
-      </span>
-    </div>
-    <p class="bdesc">${b.desc}</p>
-    <div class="chips">${chipsHTML(b)}</div>
-  </div>`;
-}
-function weekHTML(w) {
-  return `<div class="week">
-    <h3>${w.w} <span>· ${w.d} · ${w.theme}</span></h3>
-    ${w.note ? `<p class="note">${w.note}</p>` : ""}
-    ${w.blocks.map(blockHTML).join("")}
-  </div>`;
+    <p class="when" id="when-${s.id}">${s.when}</p>
+  </div>`).join("");
 }
 
-const ikappWeeks = WEEKS.filter(w => w.scope === "ikapp");
-const ksWeeks    = WEEKS.filter(w => w.scope === "ks");
-const tentaWeeks = WEEKS.filter(w => w.scope === "tenta");
-
-document.getElementById("list").innerHTML = `
-  <section class="part">
-    <h2>Ikapp nu: vecka 35-37</h2>
-    <p class="partsub">73 uppgifter, ca 22 h totalt. Heldragen ram = kärnuppgift, streckad = extra. Bocka av genom att klicka, diagrammen uppdateras direkt.</p>
-    ${ikappWeeks.map(weekHTML).join("")}
-  </section>
-  <section class="part">
-    <h2>Nästa vecka, sista före KS: vecka 38</h2>
-    <p class="partsub">17 uppgifter, ca 6 h. Elastiska linjen och elementarfall är med på KS:en, så de här räknas in i "Till KS".</p>
-    ${ksWeeks.map(weekHTML).join("")}
-  </section>
-  <details class="after">
-    <summary><h2>Efter KS, inför tentan: vecka 39-41</h2><span class="hint">fäll ut</span></summary>
-    <p class="partsub">55 uppgifter, ca 18 h. Ligger här för helhetsbilden, öppna när KS:en är avklarad.</p>
-    ${tentaWeeks.map(weekHTML).join("")}
-  </details>`;
-
-/* ---------- state och rendering ---------- */
-function fmtH(min) {
-  const h = Math.round(min / 30) / 2;
-  return h.toLocaleString("sv-SE");
+/* ================= dagsplan och idag-rutan ================= */
+function taskHTML(id) {
+  const it = ITEMS.get(id);
+  if (!it) return "";
+  const desc = it.kind === "DS"
+    ? `<span class="tdesc">diagnostisk skrivning <span class="dsi">${dsLinks(id)}</span></span>`
+    : `<span class="tdesc">${it.tag ? `<span class="tag">${esc(it.tag)}</span>` : ""}${esc(it.d || "")}</span>`;
+  return `<li class="task">${chip(id, it.ref)}${desc}<span class="tmin">${fmtMin(it.min)}</span></li>`;
 }
+function slotHTML(s) {
+  const mins = s.ids.reduce((a, id) => a + (ITEMS.get(id) ? ITEMS.get(id).min : 0), 0);
+  return `<div class="slot"><div class="when">${esc(s.when)}</div><div>
+    <div class="what">${esc(s.what)}${mins ? ` <span class="tmin">· ${fmtMin(mins)}</span>` : ""}</div>
+    ${s.ids.length ? `<ul class="tasks">${s.ids.map(taskHTML).join("")}</ul>` : ""}
+  </div></div>`;
+}
+function dayHTML(d) {
+  const ids = d.slots.flatMap(s => s.ids);
+  const cls = d.date < TODAY ? " past" : d.date === TODAY ? " is-today" : "";
+  return `<article class="day${cls}" id="d-${d.date}">
+    <div class="dh"><h3>${d.day}</h3><span class="phase">${d.phase}</span><span class="dnote">${esc(d.note)}</span>${ids.length ? counter(ids, "dcount") : ""}</div>
+    ${d.slots.map(slotHTML).join("")}
+    ${d.rest ? `<p class="rest">${esc(d.rest)}</p>` : ""}
+  </article>`;
+}
+function drawToday() {
+  const el = document.getElementById("today");
+  let d = PLAN.find(x => x.date === TODAY), head;
+  if (!d && TODAY < PLAN[0].date) { d = PLAN[0]; head = "Först ut · " + d.day; }
+  else if (!d) {
+    el.innerHTML = `<div class="th"><h2>Tentan är skriven</h2></div><p class="empty">Bra jobbat. Planen ligger kvar här under.</p>`;
+    return;
+  } else head = "Idag · " + d.day;
+  const ids = d.slots.flatMap(s => s.ids);
+  el.innerHTML = `<div class="th"><h2>${head}</h2><span class="tnote">${esc(d.note)}</span>${ids.length ? counter(ids, "tcount") : ""}</div>
+    ${d.slots.map(slotHTML).join("")}
+    ${d.rest ? `<p class="empty">${esc(d.rest)}</p>` : ""}
+    <div class="behind" id="behind" hidden></div>
+    <p class="rest"><a href="#plan">Hela planen</a> · <a href="#viktigt">Viktigt att veta</a> · <a href="#tentor">Tentorna</a></p>`;
+}
+function drawBehind() {
+  const el = document.getElementById("behind");
+  if (!el) return;
+  const late = PLAN.filter(d => d.date < TODAY).flatMap(d => d.slots.flatMap(s => s.ids)).filter(id => !done.has(id));
+  if (!late.length) { el.hidden = true; el.innerHTML = ""; return; }
+  el.hidden = false;
+  const mins = late.reduce((a, id) => a + ITEMS.get(id).min, 0);
+  el.innerHTML = `<h3>Kvar från tidigare: ${late.length} st, ca ${fmtMin(mins)}</h3>
+    <p>Ta dem först i nästa pass. Stryk hellre en DS än en tentauppgift.</p>
+    <div class="chips">${late.map(id => chip(id, ITEMS.get(id).ref, ITEMS.get(id).kind === "DS" ? "extra" : "")).join("")}</div>`;
+}
+
+/* ================= tentakorten ================= */
+function examCard(e) {
+  const ids = e.probs.filter(p => !p.skip).map(p => e.kind + ":" + e.id + ":" + p.u);
+  const rows = e.probs.map(p => {
+    const id = e.kind + ":" + e.id + ":" + p.u;
+    if (p.skip) return `<li class="prob skip"><span class="ptag">U${p.u}</span><span class="pdesc"><span class="tag">${esc(p.tag)}</span>${esc(p.d)}</span></li>`;
+    const pd = PLANNED_ON.get(id);
+    return `<li class="prob">${chip(id, "U" + p.u)}<span class="pdesc"><span class="tag">${esc(p.tag)}</span>${esc(p.d)}${pd ? ` <span class="tmin">· ${pd.day}</span>` : ""}</span></li>`;
+  }).join("");
+  const meta = e.kind === "F" ? e.meta + " · 2 uppgifter, 2 h, båda rätt ger E" : e.meta;
+  return `<article class="exam">
+    <div class="eh"><h3>${e.title}</h3>${e.mock ? `<span class="badge">${e.mock}</span>` : ""}${counter(ids, "ecount")}</div>
+    <p class="emeta">${esc(meta)}</p>
+    ${e.comment ? `<p class="ecomment">SE1021: ${esc(e.comment)}</p>` : ""}
+    <ul class="probs">${rows}</ul>
+  </article>`;
+}
+function drawExams() {
+  const xtra = `<article class="exam">
+    <div class="eh"><h3>Extra: handskrivna lösningar</h3>${counter(XTRA.map(x => x.id), "ecount")}</div>
+    <p class="emeta">ligger i Hållf-projektet · de två första tränar U6-typerna</p>
+    <ul class="probs">${XTRA.map(x => { const pd = PLANNED_ON.get(x.id);
+      return `<li class="prob">${chip(x.id, x.ref, pd ? "" : "extra")}<span class="pdesc"><span class="tag">${esc(x.tag)}</span>${esc(x.d)}${pd ? ` <span class="tmin">· ${pd.day}</span>` : " <span class=\"tmin\">· om tid finns</span>"}</span></li>`;
+    }).join("")}</ul></article>`;
+  document.getElementById("exams").innerHTML = EXAMS.map(examCard).join("") + FXS.map(examCard).join("") + xtra;
+}
+
+/* ================= DS och långa listan ================= */
+function drawDS() {
+  document.getElementById("dslist").innerHTML = Object.keys(DS).map(s => {
+    const years = Object.keys(DS[s]).map(Number).sort((a, b) => b - a);
+    const ids = years.map(y => "DS:" + s + ":" + y);
+    return `<div class="dsrow"><h3>DS-${s} <span>· ${years.length} st, ${years[years.length - 1]}-${years[0]} · </span>${counter(ids, "count")}</h3>
+      <div class="chips">${years.map(y => { const id = "DS:" + s + ":" + y;
+        return `<span class="dsi">${chip(id, String(y), ITEMS.get(id).planned ? "" : "extra")}${dsLinks(id)}</span>`; }).join("")}</div></div>`;
+  }).join("");
+}
+function drawPool() {
+  const sol = POOL_SOL.map(([c]) => "E:" + c), nos = POOL_NOSOL.map(l => "N:" + l);
+  document.getElementById("pool").innerHTML = `
+    <h3>Med lösning (${sol.length}) · ${counter(sol, "count")}</h3>
+    <p class="note">2022-04-22 och FX 2022-06-07 ligger redan i tentaveckan. Ta 2022-01-14 och 2024-tentorna härnäst.</p>
+    <div class="chips">${sol.map(id => chip(id, ITEMS.get(id).ref)).join("")}</div>
+    <h3>Utan lösning, 2016-03-15 och äldre (${nos.length}) · ${counter(nos, "count")}</h3>
+    <p class="note">Bara om allt annat är klart. Utan facit rättar du som på DS:arna: jämvikt, geometri, rimlighet.</p>
+    <div class="chips">${nos.map(id => chip(id, ITEMS.get(id).ref, "extra")).join("")}</div>`;
+}
+
+/* ================= gamla EX-listan ================= */
+const BLOCK_IDS = new Map();
+function drawOldList() {
+  const blockHTML = b => {
+    const ids = b.gr.flatMap(g => [...g.core, ...g.extra].map(n => g.b + ":" + n));
+    BLOCK_IDS.set(b.id, ids);
+    const prio = b.prio === 1 ? `<span class="prio p1">Prio 1</span>` : b.prio === 2 ? `<span class="prio p2">Prio 2</span>` : "";
+    const chips = b.gr.map(g => g.core.map(n => chip(g.b + ":" + n, g.b + ":" + n)).join("") +
+      g.extra.map(n => chip(g.b + ":" + n, g.b + ":" + n, "extra")).join("")).join("");
+    return `<div class="block"><div class="bhead">${prio}<h4>${b.title}</h4><span class="meta">${b.src} · ca ${(b.min / 60).toLocaleString("sv-SE")} h</span>
+      <span class="right">${counter(ids, "count")}<button class="allbtn" data-block="${b.id}">bocka alla</button></span></div>
+      <p class="bdesc">${b.desc}</p><div class="chips">${chips}</div></div>`;
+  };
+  document.getElementById("list").innerHTML = WEEKS.map(w => `<div class="week">
+    <h3>${w.w} <span>· ${w.d} · ${w.theme}</span></h3>${w.blocks.map(blockHTML).join("")}</div>`).join("");
+}
+
+/* ================= state, rendering, sparande ================= */
+const KEY = "se1021-ikapplistan-v1";   /* samma nyckel som förut, så gamla bockar följer med */
+const done = new Set();
 
 function render() {
-  document.querySelectorAll("button.chip").forEach(el => {
-    const d = done.has(el.dataset.ex);
+  document.querySelectorAll("button.chip[data-id]").forEach(el => {
+    const d = done.has(el.dataset.id);
     el.classList.toggle("done", d);
     el.setAttribute("aria-pressed", d);
   });
-  allBlocks.forEach(b => {
-    const ids = exOf(b);
-    const k = ids.filter(x => done.has(x)).length;
-    const cnt = document.getElementById("cnt-" + b.id);
-    cnt.textContent = k + "/" + ids.length;
-    cnt.classList.toggle("full", k === ids.length);
-    document.getElementById("all-" + b.id).textContent =
-      k === ids.length ? "nollställ" : "bocka alla";
+  document.querySelectorAll("[data-counter]").forEach(el => {
+    const c = COUNTERS[+el.dataset.counter];
+    const k = c.ids.filter(x => done.has(x)).length;
+    el.textContent = k + "/" + c.ids.length + (el.classList.contains("tcount") ? " klart" : "");
+    el.classList.toggle("full", k > 0 && k === c.ids.length);
+  });
+  document.querySelectorAll("button.allbtn").forEach(el => {
+    el.textContent = BLOCK_IDS.get(el.dataset.block).every(x => done.has(x)) ? "nollställ" : "bocka alla";
   });
   SCOPES.forEach(s => {
-    let tot = 0, klar = 0, minLeft = 0;
-    s.blocks.forEach(b => {
-      const ids = exOf(b);
-      const k = ids.filter(x => done.has(x)).length;
-      tot += ids.length; klar += k;
-      minLeft += b.min * (ids.length - k) / ids.length;
-    });
-    const left = tot - klar;
-    const svg = document.getElementById("donut-" + s.id);
+    const tot = s.ids.length, klar = s.ids.filter(x => done.has(x)).length;
+    const minLeft = s.ids.filter(x => !done.has(x)).reduce((a, x) => a + ITEMS.get(x).min, 0);
+    const svg = document.getElementById("donut-" + s.id), frac = tot ? klar / tot : 0;
     const arc = svg.querySelector(".fillarc");
-    const frac = tot ? klar / tot : 0;
     arc.setAttribute("stroke-dasharray", (frac * C) + " " + C);
     arc.style.opacity = frac > 0 ? 1 : 0;
-    svg.querySelector(".big").textContent = left;
-    svg.setAttribute("aria-label", s.title + ": " + left + " uppgifter kvar av " + tot);
-    document.getElementById("sub-" + s.id).innerHTML =
-      "<b>" + klar + " av " + tot + "</b> klara · ca " + fmtH(minLeft) + " h kvar";
+    svg.querySelector(".big").textContent = tot - klar;
+    svg.setAttribute("aria-label", s.title + ": " + (tot - klar) + " kvar av " + tot);
+    document.getElementById("sub-" + s.id).innerHTML = "<b>" + klar + " av " + tot + "</b> klara · ca " + fmtMin(minLeft) + " kvar";
   });
+  const dsPlan = SCOPES[2].ids.filter(x => ITEMS.get(x).planned);
+  document.getElementById("when-ds").textContent = "i planen: " + dsPlan.filter(x => done.has(x)).length + "/" + dsPlan.length;
+  drawBehind();
   pep();
   save();
 }
 
 function pep() {
-  const a = SCOPES[0];
-  let tot = 0, klar = 0;
-  a.blocks.forEach(b => { const ids = exOf(b); tot += ids.length; klar += ids.filter(x => done.has(x)).length; });
-  const p = klar / tot;
-  const el = document.getElementById("pep");
+  const ids = [...SCOPES[0].ids, ...SCOPES[1].ids];
+  const p = ids.filter(x => done.has(x)).length / ids.length;
   let msg;
-  if (p === 0)        msg = "Börja med att bocka av det du redan räknat (du har en bunt 2.1:or i ryggen), sen tar du nästa kärnuppgift. <b>Första bocken är den viktigaste.</b>";
-  else if (p < 0.25)  msg = "Igång! Ett block i taget, <b>momentum slår motivation.</b>";
-  else if (p < 0.5)   msg = "Fjärdedelen tagen. <b>Det här går fortare än schemat tror.</b>";
-  else if (p < 0.75)  msg = "Över hälften. <b>Nu räknar du ikapp på riktigt.</b>";
-  else if (p < 1)     msg = "Slutspurt, bara några kvar. <b>Gör klart blocket du står i.</b>";
-  else                msg = "Ikapp! 🎉 <b>Vidare mot vecka 38 och elastiska linjen, sen är KS:en din.</b>";
-  el.innerHTML = msg;
+  if (p === 0)       msg = "Första bocken är den viktigaste. <b>Börja med dagens pass i rutan ovanför.</b>";
+  else if (p < 0.25) msg = "Igång! <b>En uppgift i taget, rätta direkt och skriv felet i felboken.</b>";
+  else if (p < 0.5)  msg = "En fjärdedel av tentauppgifterna klara. <b>Nu börjar samma mönster dyka upp på flera tentor.</b>";
+  else if (p < 0.75) msg = "Över halvvägs. <b>Håll takten in i tentaveckan.</b>";
+  else if (p < 1)    msg = "Snart alla 46. <b>Gör klart och lägg resten av energin på felboken.</b>";
+  else               msg = "Alla 46 tentauppgifter klara! 🎉 <b>Nu är det felboken, sömn och FS-flikarna som gäller.</b>";
+  document.getElementById("pep").innerHTML = msg;
 }
 
 let saveT;
@@ -414,45 +963,39 @@ function save() {
   clearTimeout(saveT);
   saveT = setTimeout(async () => {
     const v = JSON.stringify([...done]);
-    try { localStorage.setItem(KEY, v); } catch (e) { /* lagring blockerad här */ }
-    try {
-      if (window.storage) await window.storage.set(KEY, v);
-    } catch (e) { /* sparande är best effort */ }
+    try { localStorage.setItem(KEY, v); } catch (e) { /* lagring blockerad */ }
+    try { if (window.storage) await window.storage.set(KEY, v); } catch (e) { /* best effort */ }
   }, 300);
 }
 function restore(v) {
   if (!v) return false;
-  try { JSON.parse(v).forEach(x => done.add(x)); return true; }
-  catch (e) { return false; }
+  try { JSON.parse(v).forEach(x => done.add(x)); return true; } catch (e) { return false; }
 }
 async function load() {
-  try {
-    if (window.storage) {
-      const r = await window.storage.get(KEY);
-      if (r && restore(r.value)) return;
-    }
-  } catch (e) { /* ingen sparad state i Claude ännu */ }
-  try { restore(localStorage.getItem(KEY)); } catch (e) { /* lagring blockerad här */ }
+  try { if (window.storage) { const r = await window.storage.get(KEY); if (r && restore(r.value)) return; } } catch (e) { /* inget sparat */ }
+  try { restore(localStorage.getItem(KEY)); } catch (e) { /* lagring blockerad */ }
 }
 
-document.getElementById("list").addEventListener("click", e => {
-  const chipEl = e.target.closest("button.chip");
-  if (chipEl) {
-    const id = chipEl.dataset.ex;
-    done.has(id) ? done.delete(id) : done.add(id);
-    render();
-    return;
-  }
-  const allEl = e.target.closest("button.allbtn");
-  if (allEl) {
-    const b = allBlocks.find(x => x.id === allEl.dataset.block);
-    const ids = exOf(b);
-    const complete = ids.every(x => done.has(x));
-    ids.forEach(x => complete ? done.delete(x) : done.add(x));
+document.addEventListener("click", e => {
+  const c = e.target.closest("button.chip[data-id]");
+  if (c) { const id = c.dataset.id; done.has(id) ? done.delete(id) : done.add(id); render(); return; }
+  const a = e.target.closest("button.allbtn");
+  if (a) {
+    const ids = BLOCK_IDS.get(a.dataset.block), all = ids.every(x => done.has(x));
+    ids.forEach(x => all ? done.delete(x) : done.add(x));
     render();
   }
 });
 
+drawBeam();
+drawCountdown();
+drawCharts();
+drawToday();
+document.getElementById("days").innerHTML = PLAN.map(dayHTML).join("");
+drawExams();
+drawDS();
+drawPool();
+drawOldList();
 (async () => { await load(); render(); })();
 </script>
 </body>
