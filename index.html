@@ -202,6 +202,33 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:14px;
 @media (prefers-reduced-motion:reduce){
   .donut .fillarc{transition:none}
 }
+/* ---------- felbok ---------- */
+.fb{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fbform{background:var(--card);border:1.5px solid var(--accent);border-radius:8px;padding:12px 14px;display:grid;gap:8px}
+.fbform label{font:12px var(--mono);color:var(--muted);display:grid;gap:3px}
+.fbform input,.fbform select,.fbform textarea{font:14px system-ui,sans-serif;color:var(--ink);background:#fff;border:1px solid var(--line-strong);border-radius:5px;padding:6px 8px;width:100%}
+.fbform textarea{min-height:52px;resize:vertical}
+.fbrow{display:grid;grid-template-columns:1fr 1fr 90px;gap:8px}
+.fbbtn{font:700 13px var(--mono);background:var(--accent);color:#fff;border:none;border-radius:5px;padding:7px 12px;cursor:pointer;justify-self:start}
+.fbbtn.ghost{background:none;color:var(--accent-ink);border:1.5px solid var(--accent)}
+.fberr{font-size:13px;color:#b42318;min-height:1em;margin:0}
+.fbstats{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.fbstats h3{margin:0 0 6px;font-size:15px}
+.fbbar{display:grid;grid-template-columns:150px 1fr 26px;gap:8px;align-items:center;font-size:13px;margin:3px 0}
+.fbbar .bt{display:block;height:10px;background:var(--track);border-radius:5px;overflow:hidden}
+.fbbar .bf{display:block;height:100%;background:var(--accent)}
+.fbbar .n{font:12px var(--mono);color:var(--muted);text-align:right}
+.fblist{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
+.fbitem{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px}
+.fbitem.ok{opacity:.6}
+.fbh{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.fbh b{font-size:14.5px}
+.fbh .x{margin-left:auto;display:flex;gap:10px}
+.fbh button{border:none;background:none;padding:0;font:12.5px var(--mono);color:var(--accent-ink);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.fbitem p{margin:4px 0 0;font-size:14px}
+.fbitem p.rule{color:var(--accent-ink);font-weight:600}
+@media (max-width:860px){.fb{grid-template-columns:1fr}}
+@media (max-width:560px){.fbrow{grid-template-columns:1fr 1fr}.fbbar{grid-template-columns:1fr 26px;gap:2px 8px}.fbbar>span:first-child{grid-column:1/-1}}
 </style>
 </head>
 <body>
@@ -226,6 +253,29 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:14px;
 <p class="strategy"><b>Upplägg:</b> 1-11/10 räknar du uppgifterna typvis (stång, balk, töjning, effektivspänning) i takt med föreläsningarna. 12-16/10 blir tentavecka med hela tentor på tid. <b>230414 och 230113 sparas till genrepen</b>, så öppna dem inte innan.</p>
 
 <main>
+
+  <section class="part" id="felbok">
+    <h2>Felbok</h2>
+    <p class="partsub">Efter varje uppgift: rätta med skalan 6/5/4/3/0, och skriv in <b>varje</b> poäng du tappade. Det viktigaste fältet är <b>regeln</b>: en mening du kan läsa dagen innan tentan. Gör om uppgiften från blankt papper dagen efter och bocka "gjort om".</p>
+    <div class="fb">
+      <form class="fbform" id="fbform" novalidate>
+        <div class="fbrow">
+          <label>Uppgift<input id="fbu" placeholder="t.ex. 210911 U5"></label>
+          <label>Feltyp<select id="fbt">
+            <option>Jämvikt/friläggning</option><option>Geometri/kompatibilitet</option><option>Tecken/riktning</option>
+            <option>Enhet/dimension</option><option>Algebra/räknefel</option><option>Fel formel/FS</option>
+            <option>Begrepp</option><option>Läste fel uppgiften</option></select></label>
+          <label>Poäng<select id="fbp"><option>6</option><option>5</option><option selected>4</option><option>3</option><option>0</option></select></label>
+        </div>
+        <label>Vad gick fel?<textarea id="fbw" placeholder="t.ex. glömde att RA kan peka nedåt, fick fel tecken på momentet"></textarea></label>
+        <label>Regel till nästa gång<textarea id="fbr" placeholder="t.ex. Ta moment kring ett stöd. Negativt svar = kraften pekar åt andra hållet, byt inte tecken i efterhand."></textarea></label>
+        <p class="fberr" id="fberr" aria-live="polite"></p>
+        <button class="fbbtn" type="submit">Spara i felboken</button>
+      </form>
+      <div class="fbstats" id="fbstats"></div>
+    </div>
+    <ul class="fblist" id="fblist"></ul>
+  </section>
 
   <section class="part" id="viktigt">
     <h2>Viktigt att veta</h2>
@@ -351,7 +401,7 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:14px;
 </main>
 
 <footer>
-  Källor: SE1021:s Extentor-sida, tentalistan och DS-sidan på Canvas, kursprogrammet 2026 och tentorna i Hållf-projektet. Tiderna är uppskattningar. Bockarna sparas automatiskt i webbläsaren på den enhet du använder (mobil och dator räknar var för sig), och de gamla från ikapplistan följer med. Version 4: utmattning struken (gjordes som labb), övningsfokus tillagt.
+  Källor: SE1021:s Extentor-sida, tentalistan och DS-sidan på Canvas, kursprogrammet 2026 och tentorna i Hållf-projektet. Tiderna är uppskattningar. Bockarna sparas automatiskt i webbläsaren på den enhet du använder (mobil och dator räknar var för sig), och de gamla från ikapplistan följer med. Version 5: felbok tillagd (sparas i webbläsaren på den här enheten, kopiera den ibland som backup).
 </footer>
 
 </div>
@@ -1006,6 +1056,59 @@ drawDS();
 drawPool();
 drawOldList();
 (async () => { await load(); render(); })();
+
+/* ================= felbok ================= */
+const FBKEY = "se1021-felbok-v1";
+let FB = [];
+const fbEsc = t => String(t).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function fbSave() {
+  const v = JSON.stringify(FB);
+  try { localStorage.setItem(FBKEY, v); } catch (e) { /* lagring blockerad */ }
+}
+function fbLoad() {
+  try { const v = localStorage.getItem(FBKEY); if (v) FB = JSON.parse(v) || []; } catch (e) { FB = []; }
+}
+function fbRender() {
+  const types = {};
+  FB.forEach(f => { types[f.t] = (types[f.t] || 0) + 1; });
+  const sorted = Object.entries(types).sort((a, b) => b[1] - a[1]);
+  const max = sorted.length ? sorted[0][1] : 1;
+  const left = FB.filter(f => !f.ok).length;
+  document.getElementById("fbstats").innerHTML = FB.length === 0
+    ? `<h3>Dina vanligaste fel</h3><p class="partsub">Tomt än så länge. Efter några uppgifter syns mönstret här, och då vet du vad du ska dubbelkolla på tentan.</p>`
+    : `<h3>Dina vanligaste fel</h3>${sorted.map(([t, n]) => `<div class="fbbar"><span>${fbEsc(t)}</span><span class="bt"><span class="bf" style="width:${n / max * 100}%"></span></span><span class="n">${n}</span></div>`).join("")}
+       <p class="partsub" style="margin-top:8px"><b>${left}</b> av ${FB.length} kvar att göra om. Läs alla regler dagen före tentan.</p>
+       <button class="fbbtn ghost" type="button" id="fbcopy" style="margin-top:8px">Kopiera hela felboken</button>`;
+  document.getElementById("fblist").innerHTML = FB.slice().reverse().map(f => `<li class="fbitem${f.ok ? " ok" : ""}">
+     <div class="fbh"><b>${fbEsc(f.u || "Uppgift")}</b><span class="tag">${fbEsc(f.t)}</span><span class="tag">${fbEsc(f.p)} p</span>
+       <span class="x"><button type="button" data-fbok="${f.id}">${f.ok ? "ångra" : "gjort om"}</button><button type="button" data-fbdel="${f.id}">ta bort</button></span></div>
+     ${f.w ? `<p>${fbEsc(f.w)}</p>` : ""}${f.r ? `<p class="rule">Regel: ${fbEsc(f.r)}</p>` : ""}</li>`).join("");
+}
+document.getElementById("fbform").addEventListener("submit", e => {
+  e.preventDefault();
+  const u = document.getElementById("fbu"), w = document.getElementById("fbw"), r = document.getElementById("fbr");
+  const err = document.getElementById("fberr");
+  if (!u.value.trim() || (!w.value.trim() && !r.value.trim())) {
+    err.textContent = "Skriv vilken uppgift och minst vad som gick fel eller regeln.";
+    return;
+  }
+  FB.push({ id: Date.now().toString(36), u: u.value.trim(), t: document.getElementById("fbt").value,
+    p: document.getElementById("fbp").value, w: w.value.trim(), r: r.value.trim(), ok: false });
+  fbSave(); fbRender();
+  err.textContent = ""; w.value = ""; r.value = "";
+});
+["fbu", "fbw", "fbr"].forEach(i => document.getElementById(i).addEventListener("input", () => { document.getElementById("fberr").textContent = ""; }));
+document.getElementById("felbok").addEventListener("click", async e => {
+  const ok = e.target.closest("[data-fbok]"), del = e.target.closest("[data-fbdel]");
+  if (ok) { const f = FB.find(x => x.id === ok.dataset.fbok); if (f) f.ok = !f.ok; fbSave(); fbRender(); }
+  if (del && confirm("Ta bort raden?")) { FB = FB.filter(x => x.id !== del.dataset.fbdel); fbSave(); fbRender(); }
+  if (e.target.id === "fbcopy") {
+    const txt = FB.map(f => `${f.u} [${f.t}, ${f.p} p]${f.ok ? " (gjort om)" : ""}\n  Fel: ${f.w}\n  Regel: ${f.r}`).join("\n\n");
+    try { await navigator.clipboard.writeText(txt); e.target.textContent = "Kopierat!"; }
+    catch (x) { e.target.textContent = "Gick inte att kopiera"; }
+  }
+});
+fbLoad(); fbRender();
 </script>
 </body>
 </html>
