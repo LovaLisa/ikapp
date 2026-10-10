@@ -220,6 +220,7 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:14px;font-si
           <li>Det som inte blev gjort syns i Idag-rutan. Ta det först nästa dag.</li>
           <li>Stryk i den här ordningen: "om tid finns", FX-uppgifter, sist en typvis tentauppgift. Genrepen stryks aldrig.</li>
           <li>Fastnar du på ett begrepp: slå upp just det i GH eller FS, läs inte kapitel.</li>
+          <li>Sov 7–8 timmar. Det är under sömnen metoderna fastnar, och tentan är 5 timmar lång.</li>
         </ul>
       </div>
     </div>
@@ -227,7 +228,7 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:14px;font-si
 </main>
 
 <footer>
-  Bockarna och felboken sparas i webbläsaren på den enhet du använder (mobil och dator räknar var för sig). Bockar från förra versionen följer med. Kopiera felboken ibland som backup. Version 6. <a href="gammal.html">Gamla versionen</a>.
+  Bockarna och felboken sparas i webbläsaren på den enhet du använder (mobil och dator räknar var för sig). Bockar från förra versionen följer med. Kopiera felboken ibland som backup. Version 7: kvällsteori med Kristins övningar 12–17. <a href="gammal.html">Gamla versionen</a>.
 </footer>
 </div>
 
@@ -284,6 +285,15 @@ def("2.4:20","EX 2.4.20","reaktioner","Reaktionskrafter och T/M-diagram, uppvär
 def("2.12:13","EX 2.12.13","brott","Statiskt brott: spänningsintensitet mot brottseghet",30);
 def("2.12:17","EX 2.12.17","brott","Statiskt brott, en till",30);
 def("E:220422","Tenta 2022-04-22","hel tenta","Från långa listan. Stryk knäckning, komposit, böjskjuv och utmattning",240);
+const ov = (id, n, namn, min) => def(id, "Övning " + n, "teori", "Kristins övning " + n + " (" + namn + "). Täck över lösningen, försök varje uppgift 10 min först, läs sen", min);
+ov("P:1013:o12", 12, "spänningsanalys, Mohrs cirkel", 75);
+ov("P:1013:o13", 13, "töjning i 3D, Hookes generaliserade lag", 75);
+ov("P:1014:o14", 14, "rör och tryckkärl", 75);
+ov("P:1014:o16", 16, "bara plasticitet/effektivspänning, hoppa över utmattning", 60);
+ov("P:1015:o17", 17, "statiskt brott, spricktillväxt bara om den inte var labb", 60);
+def("P:1017:o15","Övning 15","skumma","Kristins övning 15 (sammansatt belastning). Bara läs igenom, ingen räkning",30);
+def("2.8:1","EX 2.8.1","tryckkärl","Rör och tryckkärl, tunnväggigt",40);
+def("2.8:3","EX 2.8.3","tryckkärl","Rör och tryckkärl, en till",40);
 def("P:1011:skum","Skumma tentor","översikt","Bläddra igenom uppgiftstexterna på 3–4 tentor utan lösningar. Se att samma typer återkommer",15);
 const rec = (d, typ) => def("P:" + d + ":rec","Recept " + typ,"recept","Skriv receptet för " + typ + " i 3–4 rader + felboken",30);
 rec("1011","stel bom/stänger"); rec("1012","balk"); rec("1013","vridning och böj+vrid"); rec("1014","töjning/3D"); rec("1015","effektivspänning");
@@ -313,25 +323,29 @@ const PLAN = [
    { when:"09:00-09:30", what:"Gör om", ids:["P:1013:gorom"] },
    { when:"09:30-12:15", what:"Balk på FX", ids:["F:230523:1","F:211014:1","F:190219:2","F:180220:1"] },
    { when:"13:15-16:15", what:"Vridning, böjning + vridning", ids:["T:210911:2","T:190112:4","T:170114:2"] },
-   { when:"16:15-17:25", what:"En balk till + avsluta", ids:["F:160222:1","P:1013:rec"] } ]},
+   { when:"16:15-17:25", what:"En balk till + avsluta", ids:["F:160222:1","P:1013:rec"] },
+   { when:"19:00-21:30", what:"Kvällsteori inför töjningsdagen", ids:["P:1013:o12","P:1013:o13"] } ]},
  { date:"2026-10-14", day:"ons 14/10", theme:"töjning (3D)", note:"Läs FS först, sen uppgifter.", slots:[
    { when:"09:00-10:00", what:"Gör om + FS", ids:["P:1014:gorom","P:1014:fs"] },
    { when:"10:00-12:30", what:"Töjningsgivare och Hooke 3D", ids:["T:210911:4","K:220114:4","T:180113:4"] },
    { when:"13:30-16:20", what:"Töjning", ids:["T:170114:5","F:211014:2","F:180220:2","F:160222:2"] },
-   { when:"16:20-16:50", what:"Avsluta", ids:["P:1014:rec"] } ]},
+   { when:"16:20-16:50", what:"Avsluta", ids:["P:1014:rec"] },
+   { when:"19:00-21:15", what:"Kvällsteori inför effektivspänning", ids:["P:1014:o14","P:1014:o16"] } ]},
  { date:"2026-10-15", day:"tor 15/10", theme:"effektivspänning + brott", note:"Sista typvisa dagen.", slots:[
    { when:"09:00-10:00", what:"Gör om + FS-flikar", ids:["P:1015:gorom","P:1015:fs"] },
    { when:"10:00-12:30", what:"von Mises och Tresca", ids:["T:210911:5","T:190112:5","T:180113:5"] },
    { when:"13:30-14:50", what:"Rest-FX", ids:["F:230523:2","F:230217:2"] },
-   { when:"14:50-15:50", what:"Statiskt brott", ids:["2.12:13","2.12:17"] },
-   { when:"15:50-16:20", what:"Avsluta", ids:["P:1015:rec"] } ]},
+   { when:"14:50-16:10", what:"Rör och tryckkärl", ids:["2.8:1","2.8:3"] },
+   { when:"16:10-16:40", what:"Avsluta", ids:["P:1015:rec"] },
+   { when:"19:00-21:00", what:"Statiskt brott", ids:["P:1015:o17","2.12:13","2.12:17"] } ]},
  { date:"2026-10-16", day:"fre 16/10", theme:"genrep 1", note:"CE Stage 4 ska in senast 17:00.", slots:[
    { when:"09:00-14:00", what:"Hela 230414 på tid. Bara FS, tabeller och räknare", ids:["T:230414:1","T:230414:2","T:230414:3","T:230414:4","T:230414:5"] },
    { when:"14:15-15:30", what:"Rätta", ids:["P:1016:ratta"] },
    { when:"15:30-17:00", what:"CE Stage 4: självutvärdering och loggbok", ids:[] } ]},
- { date:"2026-10-17", day:"lör 17/10", theme:"genrep 2", note:"Kvällen fri.", slots:[
+ { date:"2026-10-17", day:"lör 17/10", theme:"genrep 2", note:"Resten av kvällen fri.", slots:[
    { when:"09:00-14:00", what:"Hela 230113 på tid", ids:["T:230113:1","T:230113:2","T:230113:3","T:230113:4","T:230113:5"] },
-   { when:"15:00-16:15", what:"Rätta", ids:["P:1017:ratta"] } ]},
+   { when:"15:00-16:15", what:"Rätta", ids:["P:1017:ratta"] },
+   { when:"19:00-19:30", what:"Om du orkar", ids:["P:1017:o15"] } ]},
  { date:"2026-10-18", day:"sön 18/10", theme:"nedvarvning", note:"Inget nytt. Tidig kväll.", slots:[
    { when:"10:00-12:00", what:"Sista genomgången", ids:["P:1018:felbok","P:1018:packa"] } ]},
  { date:"2026-10-19", day:"mån 19/10", theme:"tenta", note:"8–13. Var på plats 07:40.", slots:[],
