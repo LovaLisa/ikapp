@@ -491,7 +491,27 @@ document.addEventListener("click", e => {
 const FBKEY = "se1021-felbok-v1";
 let FB = [];
 function fbSave() { try { localStorage.setItem(FBKEY, JSON.stringify(FB)); } catch (e) { /* lagring blockerad */ } }
-function fbLoad() { try { const v = localStorage.getItem(FBKEY); if (v) FB = JSON.parse(v) || []; } catch (e) { FB = []; } }
+/* rader som Claude lagt in från genomgångarna, läggs till en gång */
+const FB_SEED = [
+ { id:"s1", u:"FX 180220 U1", t:"Begrepp", p:"0", w:"Valde elementarfall efter förra uppgiftens bild (klippte balken vid P) i stället för efter stöden. Ingen av halvorna vilade på två stöd.", r:"Räkna okända först. Obestämd: ta bort ett stöd och ersätt med en okänd kraft. Stöden väljer tabell (vägg + fri = konsol 31.1, två stöd = 31.2), lasterna väljer rad, det borttagna stödet ger villkoret." },
+ { id:"s2", u:"FX 180220 U1", t:"Jämvikt/friläggning", p:"0", w:"Satte R_B = P med bara jämvikt, fast balken har tre okända (R_A, M_A, R_B) och två ekvationer.", r:"Fler okända än jämviktsekvationer = statiskt obestämt. Då måste deformationen (elementarfall + villkor) in." },
+ { id:"s3", u:"FX 180220 U1", t:"Jämvikt/friläggning", p:"4", w:"Skrev T(x) och M(x) vid väggen.", r:"Vid ett stöd heter det R_A och M_A (reaktioner). T(x) och M(x) får man bara när man snittar mitt i balken." },
+ { id:"s4", u:"FX 180220 U1", t:"Läste fel uppgiften", p:"4", w:"Missade att stödet sitter Δ för högt, alltså är villkoret δ = Δ och inte δ = 0.", r:"Läs vad stödet gör med geometrin: passningsfel ger villkor ≠ 0. Kolla svaret med Δ = 0 (ska ge 5P/16)." },
+ { id:"s5", u:"Övning 11 (2.4.88)", t:"Jämvikt/friläggning", p:"övning", w:"Osäker på hur R_A och R_B räknas med utbredd last på en utstickare.", r:"Ersätt utbredd last med en kraft i mitten av lasten. Moment kring ett stöd. Negativt svar = kraften pekar åt andra hållet." },
+ { id:"s6", u:"Övning 10 (2.4.103)", t:"Begrepp", p:"övning", w:"Förstod inte varför utstickaren ritas sned och var M_B = PL kom ifrån.", r:"Utstickarens spets = θ_B·a (stel vridning) + konsolböjningen. Lasten på utstickaren ger momentet kraft × hävarm i stödet." }
+];
+const FBSEEDKEY = "se1021-felbok-seed-v1";
+function fbLoad() {
+  try { const v = localStorage.getItem(FBKEY); if (v) FB = JSON.parse(v) || []; } catch (e) { FB = []; }
+  let seen = [];
+  try { seen = JSON.parse(localStorage.getItem(FBSEEDKEY) || "[]"); } catch (e) { seen = []; }
+  const fresh = FB_SEED.filter(x => !seen.includes(x.id) && !FB.some(f => f.id === x.id));
+  if (fresh.length) {
+    FB = fresh.map(x => ({...x, ok:false})).concat(FB);
+    try { localStorage.setItem(FBSEEDKEY, JSON.stringify(FB_SEED.map(x => x.id))); } catch (e) { /* lagring blockerad */ }
+    fbSave();
+  }
+}
 function fbRender() {
   const types = {};
   FB.forEach(f => { types[f.t] = (types[f.t] || 0) + 1; });
@@ -504,7 +524,7 @@ function fbRender() {
        <p class="partsub" style="margin-top:8px"><b>${left}</b> av ${FB.length} kvar att göra om. Läs alla regler dagen före tentan.</p>
        <button class="fbbtn ghost" type="button" id="fbcopy" style="margin-top:8px">Kopiera hela felboken</button>`;
   document.getElementById("fblist").innerHTML = FB.slice().reverse().map(f => `<li class="fbitem${f.ok ? " ok" : ""}">
-     <div class="fbh"><b>${esc(f.u || "Uppgift")}</b><span class="tag">${esc(f.t)}</span><span class="tag">${esc(f.p)} p</span>
+     <div class="fbh"><b>${esc(f.u || "Uppgift")}</b><span class="tag">${esc(f.t)}</span><span class="tag">${/^\d$/.test(f.p) ? esc(f.p) + " p" : esc(f.p)}</span>
        <span class="x"><button type="button" data-fbok="${f.id}">${f.ok ? "ångra" : "gjort om"}</button><button type="button" data-fbdel="${f.id}">ta bort</button></span></div>
      ${f.w ? `<p>${esc(f.w)}</p>` : ""}${f.r ? `<p class="rule">Regel: ${esc(f.r)}</p>` : ""}</li>`).join("");
 }
