@@ -133,7 +133,7 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:14px;font-si
 <header>
   <p class="course">SE1021 Hållfasthetslära · HT26</p>
   <h1>Gamla tentor, en typ i taget.</h1>
-  <p class="lede"><strong>Sön–tor:</strong> samma uppgiftstyp 3–7 gånger i rad. <strong>Fre och lör:</strong> två hela tentor på tid. <strong>Sön:</strong> bara felboken. Inga DS, inga EX-listor, ingen ny teori utöver det uppgifterna kräver.</p>
+  <p class="lede"><strong>Sön–tor:</strong> samma uppgiftstyp 3–7 gånger i rad. <strong>Fre och lör:</strong> två hela tentor på tid. <strong>Sön 18:</strong> bara felboken. Kvällarna tis–tor: Kristins övningar 12–17 som teori inför nästa dag. Inga DS.</p>
   <p class="countdown" id="countdown"></p>
   <div class="progress" aria-live="polite">
     <div class="bar"><span class="fill" id="pfill"></span></div>
@@ -148,8 +148,10 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:14px;font-si
   <ol>
     <li><b>10–15 min själv först.</b> Frilägg, skriv jämvikten, skriv vad som söks och vilka samband du har (jämvikt, kompatibilitet, material).</li>
     <li><b>Fast?</b> Titta på bara nästa steg i lösningen, stäng den och fortsätt själv.</li>
+    <li><b>Tak 90 min per uppgift.</b> Läs då hela lösningen, skriv felboken och gå vidare. Uppgiften görs om nästa morgon. Att fastna i två timmar kostar en hel uppgift till.</li>
     <li><b>Rätta hårt</b> med 6/5/4/3/0. Fel jämvikt eller dimensionsfel = 0 p, hur bra resten än är.</li>
     <li><b>Felboken:</b> en rad per tappat poäng, och en regel du kan läsa söndagen före tentan.</li>
+    <li><b>Skriv alltid tentasnyggt:</b> friläggningsfigur, jämvikt med pil, samband numrerade I–II–III, svar med enhet och en rimlighetskoll.</li>
     <li><b>Slutet av dagen:</b> skriv receptet för dagens typ i 3–4 rader.</li>
     <li><b>Nästa morgon:</b> gör om gårdagens sämsta uppgift från blankt papper.</li>
   </ol>
@@ -197,6 +199,35 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:14px;font-si
           <li>På de gamla tentorna räckte 14 p för E och 18 för D, plus KS-bonus. Kolla SE1021:s gränser på försättsbladet.</li>
         </ul>
       </div>
+      <div class="card" id="matte">
+        <h3>Matte på 1 minut</h3>
+        <ul>
+          <li><b>Moment</b> = kraft × vinkelrätt avstånd (hävarm). Välj momentpunkt i ett stöd, då försvinner den okända kraften där.</li>
+          <li><b>Rätvinklig triangel:</b> sin v = motstående/hypotenusa, cos v = närliggande/hypotenusa, tan v = motstående/närliggande. sin 45° = cos 45° = 1/√2, sin 30° = 1/2, cos 30° = √3/2.</li>
+          <li><b>Små vinklar</b> (i radianer): sin θ ≈ tan θ ≈ θ, cos θ ≈ 1. En stel bom som vrids θ flyttar en punkt på avståndet a sträckan a·θ.</li>
+          <li><b>Bråk:</b> samma faktor uppe och nere stryks. Hela uttrycket gånger en faktor: dela upp, förkorta, sätt ihop.</li>
+          <li><b>Integral:</b> ∫zⁿ dz = zⁿ⁺¹/(n+1). Gränser: övre minus undre. För rektanglar: area × avstånd till mitten i stället.</li>
+          <li><b>Negativt svar</b> på en kraft = den pekar åt andra hållet. Behåll tecknet, skriv det i svaret.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Tentadagen</h3>
+        <ul>
+          <li>Läs alla sex uppgifter först (10 min). Börja med den du känner igen, ofta U1 eller U3.</li>
+          <li>Ca 45 min per uppgift. Fastnar du: lös det som går, skriv tydligt vad du skulle gjort, gå vidare. En helt rätt deluppgift kan ge 3 p.</li>
+          <li>Jämvikten måste stämma, annars 0 p. Rita friläggningen ordentligt varje gång.</li>
+          <li>Sista 20 min: kolla enheter, tecken och rimlighet på varje svar.</li>
+        </ul>
+      </div>
+      <div class="card" id="filer">
+        <h3>Var hittar jag uppgifterna?</h3>
+        <ul>
+          <li><b>Tentor och lösningar</b> ligger i Hållf-projektet, t.ex. "Tenta_gkMPTBD_210911.pdf" + "… Lösningar.pdf". 180113 och FX 230217, 190219, 170217, 160222 har tenta och lösning i samma pdf.</li>
+          <li><b>Kristins genomgångar</b> (210911, 220114 U4, 230414 U4) och <b>övning 12–17</b> på <a href="https://canvas.kth.se/courses/41559/pages/ovningsanteckningar-kristin" target="_blank" rel="noopener">gamla Canvas</a>.</li>
+          <li><b>EX-uppgifter</b> (2.4, 2.6, 2.8, 2.12) i "Exempelsamling i hållfasthetslära.pdf", facit längst bak.</li>
+          <li>Hittar du inte en fil: ta nästa uppgift i samma pass och fråga mig sen.</li>
+        </ul>
+      </div>
       <div class="card">
         <h3>Det du skippar</h3>
         <ul>
@@ -228,7 +259,7 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:14px;font-si
 </main>
 
 <footer>
-  Bockarna och felboken sparas i webbläsaren på den enhet du använder (mobil och dator räknar var för sig). Bockar från förra versionen följer med. Kopiera felboken ibland som backup. Version 7: kvällsteori med Kristins övningar 12–17. <a href="gammal.html">Gamla versionen</a>.
+  Bockarna och felboken sparas i webbläsaren på den enhet du använder (mobil och dator räknar var för sig). Bockar från förra versionen följer med. Kopiera felboken ibland som backup. Version 8: mattekort, tak per uppgift, vridning och tryckkärl utökade, var filerna finns. <a href="gammal.html">Gamla versionen</a>.
 </footer>
 </div>
 
@@ -292,6 +323,10 @@ ov("P:1014:o14", 14, "rör och tryckkärl", 75);
 ov("P:1014:o16", 16, "bara plasticitet/effektivspänning, hoppa över utmattning", 60);
 ov("P:1015:o17", 17, "statiskt brott, spricktillväxt bara om den inte var labb", 60);
 def("P:1017:o15","Övning 15","skumma","Kristins övning 15 (sammansatt belastning). Bara läs igenom, ingen räkning",30);
+def("2.8:11","EX 2.8.11","tryckkärl","Rör och tryckkärl, tredje",40);
+def("2.6:12","EX 2.6.12","vridning","Vridning, statiskt obestämd",30);
+def("2.6:14","EX 2.6.14","vridning","Vridning, en till",30);
+def("P:1011:matte","Matte på 1 minut","matte","Läs kortet Matte längre ner: sin/cos, små vinklar, bråk, ∫z dz, moment",20);
 def("2.8:1","EX 2.8.1","tryckkärl","Rör och tryckkärl, tunnväggigt",40);
 def("2.8:3","EX 2.8.3","tryckkärl","Rör och tryckkärl, en till",40);
 def("P:1011:skum","Skumma tentor","översikt","Bläddra igenom uppgiftstexterna på 3–4 tentor utan lösningar. Se att samma typer återkommer",15);
@@ -310,10 +345,11 @@ def("P:1018:packa","Packa","packa","FS, tabeller, miniräknare, leg, pennor, lin
 const PLAN = [
  { date:"2026-10-10", day:"lör 10/10", theme:"start", note:"Ikväll: inget mer. Sov, planen börjar 09:00 imorgon.", slots:[] },
  { date:"2026-10-11", day:"sön 11/10", theme:"stänger (U1)", note:"Typen som kommit på alla tentor.", slots:[
-   { when:"09:00-09:15", what:"Översikt", ids:["P:1011:skum"] },
-   { when:"09:15-12:30", what:"Stel bom", ids:["T:210911:1","T:180113:1","T:190112:1","T:190112:2"] },
+   { when:"09:00-09:35", what:"Grunderna + översikt", ids:["P:1011:matte","P:1011:skum"] },
+   { when:"09:35-12:50", what:"Stel bom", ids:["T:210911:1","T:180113:1","T:190112:1","T:190112:2"] },
    { when:"13:30-16:30", what:"Plastiskt, termo, FX", ids:["T:170114:1","T:160115:1","F:230217:1"] },
-   { when:"16:30-17:00", what:"Avsluta", ids:["P:1011:rec"] } ]},
+   { when:"16:30-17:00", what:"Avsluta", ids:["P:1011:rec"] },
+   { when:"19:00-21:00", what:"Kväll: gör om", ids:[] } ]},
  { date:"2026-10-12", day:"mån 12/10", theme:"balk (U3)", note:"Elementarfallen är färska, utnyttja det.", slots:[
    { when:"09:00-10:00", what:"Gör om + uppvärmning", ids:["P:1012:gorom","2.4:19","2.4:20"] },
    { when:"10:00-12:30", what:"Balk", ids:["T:210911:3","T:180113:2","T:180113:3"] },
@@ -323,7 +359,7 @@ const PLAN = [
    { when:"09:00-09:30", what:"Gör om", ids:["P:1013:gorom"] },
    { when:"09:30-12:15", what:"Balk på FX", ids:["F:230523:1","F:211014:1","F:190219:2","F:180220:1"] },
    { when:"13:15-16:15", what:"Vridning, böjning + vridning", ids:["T:210911:2","T:190112:4","T:170114:2"] },
-   { when:"16:15-17:25", what:"En balk till + avsluta", ids:["F:160222:1","P:1013:rec"] },
+   { when:"16:15-17:55", what:"En balk, vridning till + avsluta", ids:["F:160222:1","2.6:12","P:1013:rec"] },
    { when:"19:00-21:30", what:"Kvällsteori inför töjningsdagen", ids:["P:1013:o12","P:1013:o13"] } ]},
  { date:"2026-10-14", day:"ons 14/10", theme:"töjning (3D)", note:"Läs FS först, sen uppgifter.", slots:[
    { when:"09:00-10:00", what:"Gör om + FS", ids:["P:1014:gorom","P:1014:fs"] },
@@ -335,8 +371,8 @@ const PLAN = [
    { when:"09:00-10:00", what:"Gör om + FS-flikar", ids:["P:1015:gorom","P:1015:fs"] },
    { when:"10:00-12:30", what:"von Mises och Tresca", ids:["T:210911:5","T:190112:5","T:180113:5"] },
    { when:"13:30-14:50", what:"Rest-FX", ids:["F:230523:2","F:230217:2"] },
-   { when:"14:50-16:10", what:"Rör och tryckkärl", ids:["2.8:1","2.8:3"] },
-   { when:"16:10-16:40", what:"Avsluta", ids:["P:1015:rec"] },
+   { when:"14:50-16:50", what:"Rör och tryckkärl", ids:["2.8:1","2.8:3","2.8:11"] },
+   { when:"16:50-17:20", what:"Avsluta", ids:["P:1015:rec"] },
    { when:"19:00-21:00", what:"Statiskt brott", ids:["P:1015:o17","2.12:13","2.12:17"] } ]},
  { date:"2026-10-16", day:"fre 16/10", theme:"genrep 1", note:"CE Stage 4 ska in senast 17:00.", slots:[
    { when:"09:00-14:00", what:"Hela 230414 på tid. Bara FS, tabeller och räknare", ids:["T:230414:1","T:230414:2","T:230414:3","T:230414:4","T:230414:5"] },
@@ -351,7 +387,7 @@ const PLAN = [
  { date:"2026-10-19", day:"mån 19/10", theme:"tenta", note:"8–13. Var på plats 07:40.", slots:[],
    rest:"Läs alla sex uppgifter först och börja med den du känner igen, ofta U1. Frilägg och skriv jämvikten ordentligt, sätt enhet på svaret och kolla rimligheten." }
 ];
-const OPTIONAL = ["F:190219:1","F:170217:1","F:170217:2","E:220422"];
+const OPTIONAL = ["F:190219:1","F:170217:1","F:170217:2","2.6:14","E:220422"];
 
 /* ================= datum ================= */
 const pad = n => String(n).padStart(2, "0");
@@ -381,7 +417,7 @@ function slotHTML(s) {
   const mins = s.ids.reduce((a, id) => a + P[id].min, 0);
   return `<div class="slot"><div class="when">${esc(s.when)}</div><div>
     <div class="what">${esc(s.what)}${mins ? ` <span class="tmin">· ${fmtMin(mins)}</span>` : ""}</div>
-    ${s.ids.length ? `<ul class="tasks">${s.ids.map(id => taskHTML(id)).join("")}</ul>` : ""}</div></div>`;
+    ${s.ids.length ? `<ul class="tasks">${s.ids.map(id => taskHTML(id)).join("")}</ul>` : (s.what.startsWith("Kväll: gör om") ? `<p class="rest" style="margin-top:2px">Ta dagens sämsta stånguppgift igen från blankt papper. Sitter den, ta en till ur felboken.</p>` : "")}</div></div>`;
 }
 function dayHTML(d) {
   const ids = d.slots.flatMap(s => s.ids);
