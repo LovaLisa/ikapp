@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>SE1021 · Översikt inför tentan</title>
+<style>
+:root{
+  --paper:#fbfcfe;--ink:#1c2430;--muted:#5d6b7a;--grid:rgba(70,110,170,.09);
+  --accent:#e8650d;--accent-ink:#b54c05;--accent-soft:#fdeadd;
+  --line:#dbe2ea;--line-strong:#b9c4cf;--card:#fff;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;color:var(--ink);background:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:40px 16px 90px}
+a{color:var(--accent-ink);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent-ink);outline-offset:2px}
+.course{margin:0 0 6px;font-family:var(--mono);font-size:13px;color:var(--muted)}
+h1{margin:0 0 10px;font-size:clamp(30px,5.5vw,44px);line-height:1.05;letter-spacing:-.02em;font-weight:800}
+.lede{margin:0;max-width:64ch;font-size:17px;color:var(--muted)}
+.lede strong{color:var(--ink)}
+nav.toc{margin:20px 0 0;display:flex;flex-wrap:wrap;gap:7px}
+nav.toc a{font:13px var(--mono);padding:4px 10px;border:1.5px solid var(--line-strong);border-radius:5px;background:#fff;text-decoration:none;color:var(--ink)}
+nav.toc a:hover{border-color:var(--accent)}
+section{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+section.hot{border:1.5px solid var(--accent)}
+h2{margin:0;font-size:21px;letter-spacing:-.01em}
+h2 .u{font:700 12px var(--mono);color:var(--accent-ink);border:1px solid var(--accent);border-radius:4px;padding:1px 7px;margin-left:8px;vertical-align:3px}
+.src{margin:2px 0 0;font:12.5px var(--mono);color:var(--muted)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 22px;margin-top:8px}
+h3{margin:12px 0 2px;font-size:13px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.04em;color:var(--accent-ink)}
+ul,ol{margin:2px 0 0;padding-left:20px;font-size:14.5px}
+li{margin:3px 0}
+li b{color:var(--ink)}
+.f{font-family:var(--mono);font-size:13.5px;background:#f4f6f9;border:1px solid var(--line);border-radius:4px;padding:0 5px;white-space:nowrap}
+.trap li::marker{content:"! ";color:var(--accent);font-weight:700}
+.back{margin-top:30px;font-size:14px}
+footer{margin-top:40px;border-top:1px solid var(--line);padding-top:14px;font-size:13px;color:var(--muted);max-width:76ch}
+@media (max-width:720px){.grid{grid-template-columns:1fr}.f{white-space:normal}}
+@media print{
+  body{background:#fff;font-size:12px}.wrap{padding:0}nav.toc,.back{display:none}
+  section{break-inside:avoid;border-color:#999;padding:10px 12px;margin-top:10px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="course">SE1021 Hållfasthetslära · tenta mån 19/10</p>
+  <h1>Det viktigaste inför tentan</h1>
+  <p class="lede">En sida per uppgiftstyp: <strong>vad du ska förstå</strong>, <strong>formlerna</strong>, <strong>receptet</strong> och <strong>fällorna</strong>. Läs avsnittet för dagens typ på morgonen och fällorna igen innan du rättar. Formlerna står i FS, så lär dig <em>när</em> de används, inte utantill.</p>
+  <nav class="toc" aria-label="Innehåll">
+    <a href="#mall">Lösningsmallen</a><a href="#stang">Stänger</a><a href="#vrid">Vridning</a><a href="#balk">Balk</a>
+    <a href="#bojvrid">Böj + vrid</a><a href="#spanning">Spänning, Mohr</a><a href="#tojning">Töjning, Hooke 3D</a>
+    <a href="#tryck">Tryckkärl</a><a href="#eff">von Mises, Tresca</a><a href="#brott">Brott</a><a href="#begrepp">Begrepp</a>
+  </nav>
+</header>
+
+<section class="hot" id="mall">
+  <h2>Lösningsmallen <span class="u">alla uppgifter</span></h2>
+  <p class="src">GH:s I–II–III-upplägg, det rättarna vill se</p>
+  <ol>
+    <li><b>Figur och friläggning.</b> Rita kroppen, alla krafter och moment, koordinatsystem. Okända krafter ritas åt ett valt håll.</li>
+    <li><b>I. Jämvikt.</b> Kraftjämvikt i x och y, momentjämvikt kring en smart punkt (ett stöd, där flest okända försvinner).</li>
+    <li><b>Räkna obekanta.</b> Fler okända än jämviktsekvationer = statiskt obestämt. Då behövs II och III.</li>
+    <li><b>II. Deformation/kompatibilitet.</b> Hur hänger förskjutningarna ihop? (Stel bom, samma förvridning, δ = 0 vid stöd, θ = 0 vid inspänning.)</li>
+    <li><b>III. Materialsamband.</b> Hooke: σ = Eε, τ = Gγ, plus αΔT vid temperatur.</li>
+    <li><b>Lös, svara med enhet</b> och gör en <b>dimensions- och rimlighetskoll</b>.</li>
+  </ol>
+  <h3>Poängen</h3>
+  <ul>
+    <li>6/5/4/3/0. Räknefel = 5, tecken/riktning/enhet = 4, <b>fel jämvikt eller dimensionsfel = 0</b>.</li>
+    <li>En tydligt avgränsad deluppgift helt rätt kan ge 3 p. Lämna aldrig en uppgift tom.</li>
+  </ul>
+</section>
+
+<section id="stang">
+  <h2>Stänger och stel bom <span class="u">U1, alla tentor</span></h2>
+  <p class="src">GH 2–5 · dagsplanen sön 11/10</p>
+  <div class="grid">
+    <div>
+      <h3>Förstå</h3>
+      <ul>
+        <li>En stång tar bara kraft längs sig själv: normalkraft N, drag positiv.</li>
+        <li>En <b>stel bom</b> deformeras inte, den flyttar sig och vrider sig lite. Alla stänger som sitter i den får förlängningar som bestäms av bommens rörelse.</li>
+        <li>Små vinklar: bommen vrids θ, en punkt på avståndet a flyttar sig a·θ.</li>
+        <li>En <b>sned stång</b> förlängs bara med den del av förskjutningen som ligger längs stången: δ = u·cos φ.</li>
+      </ul>
+      <h3>Formler</h3>
+      <ul>
+        <li><span class="f">σ = N/A</span> · <span class="f">ε = δ/L</span> · <span class="f">σ = Eε</span></li>
+        <li><span class="f">δ = NL/(EA) + αΔT·L</span></li>
+        <li>Plasticering: stången flyter när <span class="f">|σ| = σs</span>, dvs <span class="f">N = σs·A</span> sen.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Recept</h3>
+      <ol>
+        <li>Frilägg bommen, N i varje stång (drag antaget).</li>
+        <li>Jämvikt för bommen (oftast moment kring leden).</li>
+        <li>Rörelse: bommen vrids θ (och/eller sjunker v). Förlängning i varje stång uttryckt i θ.</li>
+        <li>Hooke: N = EAδ/L (minus αΔT-delen).</li>
+        <li>Sätt in i jämvikten, lös θ, sen N och σ.</li>
+      </ol>
+      <h3>Fällor</h3>
+      <ul class="trap">
+        <li>Glömd cos φ för sneda stänger.</li>
+        <li>Tecken: en stång som trycks ihop har negativ förlängning.</li>
+        <li>Fri temperaturökning ger töjning men ingen spänning. Spänning uppstår bara om något hindrar.</li>
+        <li>Plastiskt: begynnande = första stången flyter. Kollaps = så många flyter att bommen kan röra sig fritt.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="vrid">
+  <h2>Vridning <span class="u">U2 ibland</span></h2>
+  <p class="src">GH 6 · tis 13/10</p>
+  <div class="grid">
+    <div>
+      <h3>Förstå</h3>
+      <ul>
+        <li>Vridmoment Mv ger skjuvspänning τ som växer linjärt från centrum, störst på ytan.</li>
+        <li>Axlar som sitter ihop (samma gavel) får <b>samma förvridning φ</b>. Det är kompatibiliteten i obestämda vridproblem.</li>
+        <li>Elastiskt-plastiskt: ytan flyter först, sen kryper flytzonen inåt.</li>
+      </ul>
+      <h3>Formler</h3>
+      <ul>
+        <li><span class="f">τmax = Mv/Wv</span> · <span class="f">φ = Mv·L/(G·Kv)</span></li>
+        <li>Massiv cirkel: <span class="f">Kv = πd⁴/32</span>, <span class="f">Wv = πd³/16</span></li>
+        <li>Tunnväggigt rör (radie a, tjocklek h): <span class="f">Kv = 2πa³h</span>, <span class="f">Wv = 2πa²h</span></li>
+        <li>Massiv axel, full plasticering: Mv = 4/3 av momentet vid begynnande plasticering.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Recept</h3>
+      <ol>
+        <li>Frilägg, momentjämvikt längs axeln.</li>
+        <li>Obestämt: φ lika för delarna som sitter ihop.</li>
+        <li>φ = MvL/(GKv) för varje del, lös momenten.</li>
+        <li>τmax = Mv/Wv i varje del, jämför med τs.</li>
+      </ol>
+      <h3>Fällor</h3>
+      <ul class="trap">
+        <li>Olika G i olika delar, ta rätt G till rätt del.</li>
+        <li>d (diameter) och r (radie) blandas ihop i Kv.</li>
+        <li>φ i radianer.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="balk">
+  <h2>Balk <span class="u">U3, alla tentor</span></h2>
+  <p class="src">GH 7 · FS 31 (elementarfall), FS 30 (tvärsnittsdata) · mån 12 + tis 13/10</p>
+  <div class="grid">
+    <div>
+      <h3>Förstå</h3>
+      <ul>
+        <li>Snitta balken: i snittet verkar tvärkraft T och böjmoment M. Jämvikt för en bit ger dem.</li>
+        <li><span class="f">dT/dx = −q</span>, <span class="f">dM/dx = T</span>: M har max/min där T byter tecken.</li>
+        <li>Böjning: ena sidan dras, andra trycks. Neutrala lagret (genom tyngdpunkten) är spänningsfritt.</li>
+        <li><b>Elementarfall</b> = färdiglösta balkar. Superposition: laster samtidigt = summan.</li>
+        <li><b>Obestämt</b>: ersätt ett stöd/inspänning med en okänd kraft/moment och kräv δ = 0 eller θ = 0 där.</li>
+        <li>Utstickare: spetsen sjunker <b>θ<sub>B</sub>·a</b> (stel vridning) <b>+</b> konsolböjningen.</li>
+      </ul>
+      <h3>Formler</h3>
+      <ul>
+        <li><span class="f">σ = N/A + M·z/I</span> · <span class="f">|σ|max = |M|max/Wb</span>, <span class="f">Wb = I/|z|max</span></li>
+        <li>Rektangel b×h: <span class="f">I = bh³/12</span>, <span class="f">Wb = bh²/6</span></li>
+        <li>Steiner: <span class="f">I = Σ(Iᵢ + Aᵢ·aᵢ²)</span>, aᵢ = avstånd till hela tvärsnittets TP</li>
+        <li>Elastiska linjen: <span class="f">−EI·w″ = M</span></li>
+        <li>Randvillkor: fast inspänd w = w′ = 0 · fritt upplagd w = 0, M = 0 · fri ände M = T = 0</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Recept</h3>
+      <ol>
+        <li>Frilägg hela balken, reaktioner (moment kring ett stöd).</li>
+        <li>T/M-diagram: snitta i varje intervall, kolla värdena vid stöd och laster.</li>
+        <li>Spänning: |M|max och Wb.</li>
+        <li>Nedböjning: dela upp i elementarfall (stöden väljer tabell, lasterna väljer rad), eller integrera w″ med randvillkor.</li>
+        <li>Obestämt: antal okända = antal villkor.</li>
+      </ol>
+      <h3>Fällor</h3>
+      <ul class="trap">
+        <li>Q (total last, N) ≠ q (per meter). Q = q·l.</li>
+        <li>l i tabellen är längden på <b>den biten</b>, inte hela balken.</li>
+        <li>δ har olika positiv riktning i olika fall. Rita pilen innan du adderar.</li>
+        <li>Glömd stel vridning θ·a vid utstickare.</li>
+        <li>Negativ reaktion = den pekar åt andra hållet, inget fel.</li>
+        <li>Momentdiagrammet är rättarnas vanligaste avdrag. Kolla att M = 0 vid fria ändar och fritt upplagda ändar (om inget yttre moment verkar där).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="bojvrid">
+  <h2>Böjning + vridning <span class="u">U2 eller U4</span></h2>
+  <p class="src">tis 13/10 · t.ex. bockad rundstång, axeltapp, excentrisk kraft</p>
+  <div class="grid">
+    <div>
+      <h3>Förstå</h3>
+      <ul>
+        <li>En kraft som inte går genom axeln ger både böjmoment och vridmoment.</li>
+        <li><b>Bockad stång</b> (rät vinkel): kraften i spetsen böjer ena benet och vrider det andra. Spetsens nedböjning = böjning av benet med kraften + vridning φ av det andra benet × hävarmen + böjning av det andra benet.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Recept och fällor</h3>
+      <ul>
+        <li>Snitta vid infästningen: skriv ut N, T, M och Mv.</li>
+        <li>Farligaste punkten på ytan: σ från M (och N), τ från Mv. Sen von Mises/Tresca.</li>
+      </ul>
+      <ul class="trap"><li>Vridningens bidrag till nedböjningen (φ·L) glöms lätt bort.</li></ul>
+    </div>
+  </div>
+</section>
+
+<section id="spanning">
+  <h2>Spänningstillstånd och Mohrs cirkel <span class="u">U4–U5</span></h2>
+  <p class="src">GH 9.1–9.2.8 · Kristins övning 12 · tis 13/10 kväll</p>
+  <div class="grid">
+    <div>
+      <h3>Förstå</h3>
+      <ul>
+        <li>Spänningen i en punkt beror på vilket snitt man tittar på. Huvudspänningar = snitt utan skjuvspänning.</li>
+        <li>Mohrs cirkel: varje snittriktning är en punkt på cirkeln. Vrider du snittet θ, vrider du dig 2θ på cirkeln.</li>
+        <li>Plan spänning: σz = 0, och 0 är också en huvudspänning.</li>
+      </ul>
+      <h3>Formler</h3>
+      <ul>
+        <li><span class="f">σ₁,₂ = (σx+σy)/2 ± √(((σx−σy)/2)² + τxy²)</span></li>
+        <li><span class="f">tan 2θ = 2τxy/(σx−σy)</span></li>
+        <li><span class="f">τmax = (σmax − σmin)/2</span>, ta med 0 vid plan spänning</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Fällor</h3>
+      <ul class="trap">
+        <li>2θ på cirkeln, θ i verkligheten.</li>
+        <li>τmax i 3D: glömd tredje huvudspänningen (0) vid plan spänning.</li>
+        <li>Teckenkonventionen för τ i Mohr. Följ FS:s figur varje gång.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="tojning">
+  <h2>Töjning, töjningsgivare och Hookes generaliserade lag <span class="u">U4–U5</span></h2>
+  <p class="src">GH 9.3–10 · Kristins övning 13 · ons 14/10</p>
+  <div class="grid">
+    <div>
+      <h3>Förstå</h3>
+      <ul>
+        <li>En töjningsgivare mäter töjningen i <b>en</b> riktning. Två eller tre givare ger hela töjningstillståndet.</li>
+        <li>Drar du i x-led blir materialet smalare i y och z (Poissons tal ν).</li>
+        <li>Plan spänning: σz = 0 men εz ≠ 0.</li>
+      </ul>
+      <h3>Formler</h3>
+      <ul>
+        <li>Givare i vinkeln φ: <span class="f">ε(φ) = εx·cos²φ + εy·sin²φ + γxy·sinφ·cosφ</span></li>
+        <li><span class="f">εx = (σx − ν(σy+σz))/E + αΔT</span> (och cykliskt för y, z)</li>
+        <li><span class="f">γxy = τxy/G</span>, <span class="f">G = E/(2(1+ν))</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Recept</h3>
+      <ol>
+        <li>Vilka spänningar finns? (Från N, M, Mv, tryck.)</li>
+        <li>Hooke 3D ger εx, εy, γxy.</li>
+        <li>Givarens töjning med ε(φ). Eller baklänges: mätta ε ger spänningarna ger lasten.</li>
+      </ol>
+      <h3>Fällor</h3>
+      <ul class="trap">
+        <li>γ (ingenjörsskjuvning) vs ε_xy = γ/2. Kolla vilken FS-formeln använder.</li>
+        <li>Glömt ν-termerna.</li>
+        <li>Vinkeln φ: från vilken axel och åt vilket håll.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="tryck">
+  <h2>Rör och tryckkärl <span class="u">U4–U5</span></h2>
+  <p class="src">GH 9.2.9–9.2.10, GH 11 · Kristins övning 14 · ons kväll, tor 15/10</p>
+  <div class="grid">
+    <div>
+      <h3>Förstå</h3>
+      <ul>
+        <li>Tunnväggigt: väggen så tunn att spänningen är jämn genom tjockleken.</li>
+        <li>Cylinder: tangentiellt (runt om) dubbelt så stort som axiellt. Därför spricker korvar på längden.</li>
+      </ul>
+      <h3>Formler (a = medelradie, h = väggtjocklek)</h3>
+      <ul>
+        <li>Cylinder: <span class="f">σφ = pa/h</span>, <span class="f">σx = pa/(2h)</span>, <span class="f">σr ≈ 0</span></li>
+        <li>Sfär: <span class="f">σ = pa/(2h)</span> åt alla håll i väggen</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Recept och fällor</h3>
+      <ul>
+        <li>Kombinera med N, Mv eller M: lägg ihop σx-bidragen, τ från vridning, sen effektivspänning eller Hooke.</li>
+      </ul>
+      <ul class="trap">
+        <li>Radie eller diameter? Formlerna har radien.</li>
+        <li>Slutet kärl ger axiell spänning, öppet rör inte.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="eff">
+  <h2>Effektivspänning: von Mises och Tresca <span class="u">U4–U5</span></h2>
+  <p class="src">GH 12 · Kristins övning 16 (bara plasticitet) · tor 15/10</p>
+  <div class="grid">
+    <div>
+      <h3>Förstå</h3>
+      <ul>
+        <li>Ett fleraxligt spänningstillstånd jämförs med dragprovet genom ett enda tal, effektivspänningen σe.</li>
+        <li>Flytning när <span class="f">σe = σs</span>. Säkerhetsfaktor <span class="f">n = σs/σe</span>.</li>
+        <li>Tresca är lite mer försiktig än von Mises.</li>
+      </ul>
+      <h3>Formler</h3>
+      <ul>
+        <li>von Mises: <span class="f">σe = √(σ₁²+σ₂²+σ₃² − σ₁σ₂ − σ₂σ₃ − σ₃σ₁)</span></li>
+        <li>Tresca: <span class="f">σe = σmax − σmin</span></li>
+        <li>Bara σ och τ (t.ex. böj + vrid på ytan): von Mises <span class="f">√(σ² + 3τ²)</span>, Tresca <span class="f">√(σ² + 4τ²)</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Recept</h3>
+      <ol>
+        <li>Hitta farligaste punkten (oftast ytan där M och Mv är störst).</li>
+        <li>Spänningarna där, sen huvudspänningar (eller σ, τ-genvägen).</li>
+        <li>σe, jämför med σs eller lös ut lasten.</li>
+      </ol>
+      <h3>Fällor</h3>
+      <ul class="trap">
+        <li>Tresca: σmin kan vara 0 (plan spänning). Ta med den.</li>
+        <li>Fel punkt: kolla både där σ och där τ är störst.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="brott">
+  <h2>Statiskt brott <span class="u">om tid finns</span></h2>
+  <p class="src">GH 14.1–14.5, EX 2.12 · Kristins övning 17 · tor 15/10 kväll</p>
+  <div class="grid">
+    <div>
+      <h3>Förstå</h3>
+      <ul>
+        <li>En spricka förstärker spänningen vid spetsen. Spänningsintensiteten K<sub>I</sub> mäter hur farligt.</li>
+        <li>Sprödbrott när <span class="f">K<sub>I</sub> = K<sub>Ic</sub></span> (brottseghet, materialdata).</li>
+      </ul>
+      <h3>Formler</h3>
+      <ul>
+        <li><span class="f">K<sub>I</sub> = σ·√(πa)·f</span>, f = geometrifaktor ur FS</li>
+        <li>Säkerhet mot brott: <span class="f">n = K<sub>Ic</sub>/K<sub>I</sub></span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Fällor</h3>
+      <ul class="trap">
+        <li>a = spricklängd enligt FS-figuren (hel eller halv längd?).</li>
+        <li>Enheter: K i MPa√m, så a i meter.</li>
+        <li>Kolla både brott och plasticering, den som ger lägst last avgör.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="begrepp">
+  <h2>Begrepp du ska kunna förklara med egna ord</h2>
+  <div class="grid">
+    <ul>
+      <li><b>Statiskt bestämt/obestämt:</b> räcker jämvikten för att hitta alla krafter, eller behövs deformationen?</li>
+      <li><b>Kompatibilitet:</b> delar som sitter ihop måste röra sig ihop.</li>
+      <li><b>Superposition:</b> linjärt elastiskt, så laster kan läggas ihop.</li>
+      <li><b>Små deformationer:</b> sin θ ≈ θ, geometrin ändras inte märkbart.</li>
+    </ul>
+    <ul>
+      <li><b>Neutrala lagret:</b> där böjspänningen är noll, genom tyngdpunkten.</li>
+      <li><b>Huvudspänning:</b> normalspänning på ett snitt utan skjuvspänning.</li>
+      <li><b>Effektivspänning:</b> fleraxligt tillstånd omräknat till ett dragprov.</li>
+      <li><b>Säkerhetsfaktor:</b> hur många gånger lasten kan öka innan det går fel.</li>
+    </ul>
+  </div>
+</section>
+
+<p class="back"><a href="index.html">← Tillbaka till dagsplanen</a> · Fördjupning: Hållf-kompendiet (Claude-artefakten från 1/10) och GH.</p>
+<footer>Byggd 10/10 från GH (Lundh), kursprogrammet SE1021 2026 och tentorna 2016–2023. Skriv ut med Cmd+P om du vill ha den på papper (den får inte ligga i FS).</footer>
+</div>
+</body>
+</html>
