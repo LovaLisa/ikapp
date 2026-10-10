@@ -272,7 +272,7 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:14px;
           <li><b>U1</b> har varit en stånguppgift på alla sju, oftast en stel bom som hänger i stänger. Jämvikt, kompatibilitet, Hooke. Sitter rutinen är det säkra poäng.</li>
           <li><b>U3</b> har varit en balk på alla sju: elastiska linjen, elementarfall, statiskt obestämt eller T/M-diagram.</li>
           <li><b>U2</b> växlar mellan vridning, balk och stänger. <b>U4-U5</b> är 3D: töjningsgivare, generaliserade Hooke, Mohr, von Mises/Tresca, tryckkärl och böjning plus vridning.</li>
-          <li><b>U6</b> är brottmekanik eller utmattning och stryks. Men båda ingår i SE1021 (EX 2.12 och andra beräkningsuppgiften), så träna dem med EX 2.12 och de handskrivna lösningarna till 2019-04-17 U6 och 2022-01-14 U6 i projektet.</li>
+          <li><b>U6</b> är brottmekanik eller utmattning och stryks. <b>Utmattning ersattes av labbar i år och kommer inte på tentan.</b> Statiskt brott (GH 14.1-14.5, EX 2.12) ingår fortfarande, träna det med EX 2.12 och den handskrivna lösningen till 2022-01-14 U6.</li>
         </ul>
       </div>
 
@@ -280,7 +280,7 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:14px;
         <h3>Långa listan (SE1010/SE1020)</h3>
         <ul>
           <li>43 tentor och runt 30 FX sedan 2004. Alla på 19 dagar är över 200 timmar, så planen tar SE1021-lärarnas 14 fullt ut plus två extra genrep. Resten går att bocka längre ner.</li>
-          <li>Hoppa över uppgifter om <b>knäckning</b>, <b>kompositer</b> (ortotropt material) och <b>böjskjuvspänningar</b>. De finns inte i SE1021:s schema.</li>
+          <li>Hoppa över uppgifter om <b>knäckning</b>, <b>kompositer</b> (ortotropt material), <b>böjskjuvspänningar</b> och <b>utmattning</b>. De tre första finns inte i SE1021:s schema, utmattning gjordes som labb.</li>
           <li>Från HT23 har tentorna en Del1 och en Del2 (2024-tentorna). 2020-04-17 till 2021-04-09 skrevs på distans med individuella varianter, lösningen gäller varianten som visas.</li>
           <li>2016-03-15 och äldre saknar lösningar på sidan, ta dem sist. Läs <b>"Hur vi tänkte &amp; hur det gick"</b> (2022-01-14, 2020-01-11) och <b>"Lärarnas kommentarer"</b> (2017-04-11 och 2017-01-14, alltså din 170114).</li>
         </ul>
@@ -293,6 +293,16 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:14px;
           <li>Facit finns bara till några, med flit. Rätta själv: stämmer jämvikten för varje del och för helheten? Stämmer geometrin? Räkna ut mer än det som efterfrågas, en rätt lösning uppfyller alltid alla krav.</li>
           <li>Osäker på ett begrepp? Plugga begreppet (GH, föreläsningen, <a href="https://canvas.kth.se/courses/41559/files/6719270?wrap=1" target="_blank" rel="noopener">begreppsordlistan</a>) i stället för att räkna fler tal.</li>
           <li>Facit eller genomgång finns till DS-1 2019 och 2021, DS-2 2020 och 2021, DS-3 2020 och 2021 samt DS-4 2020 och 2021 (orange länkar i listan).</li>
+        </ul>
+      </div>
+
+      <div class="card hot">
+        <h3>Övningarna (gamla Canvas, Kristins anteckningar)</h3>
+        <ul>
+          <li><b>Fokus:</b> 8 normalspänning balk, 9 elastiska linjen, 10 elementarfall, 12 spänningsanalys, 13 töjning i 3D, 14 rör och tryckkärl, 16 bara plasticitet/effektivspänning, 17 statiskt brott, 19 extenta-tal.</li>
+          <li><b>Skumma:</b> 15 sammansatt belastning. Inte eget pass i år, men den blandar böjning, vridning och von Mises, som tentan gillar.</li>
+          <li><b>Kolla:</b> spricktillväxt vid cyklisk last (andra halvan av 17, Paris lag). Det är utmattning med brottmekanik. Stryk den om labben ersatte den också.</li>
+          <li><b>Skippa:</b> 11 böjskjuvspänningar (GH 7.5 saknas i schemat), 18 instabilitet och kompositer, och utmattningsdelen av 16.</li>
         </ul>
       </div>
 
@@ -341,7 +351,7 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:14px;
 </main>
 
 <footer>
-  Källor: SE1021:s Extentor-sida, tentalistan och DS-sidan på Canvas, kursprogrammet 2026 och tentorna i Hållf-projektet. Tiderna är uppskattningar. Bockarna sparas automatiskt i webbläsaren på den enhet du använder (mobil och dator räknar var för sig), och de gamla från ikapplistan följer med. Version 3.
+  Källor: SE1021:s Extentor-sida, tentalistan och DS-sidan på Canvas, kursprogrammet 2026 och tentorna i Hållf-projektet. Tiderna är uppskattningar. Bockarna sparas automatiskt i webbläsaren på den enhet du använder (mobil och dator räknar var för sig), och de gamla från ikapplistan följer med. Version 4: utmattning struken (gjordes som labb), övningsfokus tillagt.
 </footer>
 
 </div>
@@ -449,7 +459,6 @@ const FXS = [
 
 /* handskrivna lösningar som ligger i projektet (U6-typerna som annars stryks) */
 const XTRA = [
- { id:"X:190417:6", ref:"2019-04-17 U6", tag:"utmattning", d:"Var ett svarvat spår får sitta utan att utmattningen blir sämre", min:50 },
  { id:"X:220114:6", ref:"2022-01-14 U6", tag:"brott", d:"Sprickor, säkerhet n = 2 mot spricktillväxt", min:50 },
  { id:"X:200111:1", ref:"2020-01-11 U1", tag:"stång", d:"Skiva i tre stänger, placering så den inte roterar", min:50 },
  { id:"X:200111:3", ref:"2020-01-11 U3", tag:"balk", d:"Balk med randmoment via elementarfall", min:50 }
@@ -542,7 +551,7 @@ const PLAN = [
    { when:"19:30-21:15", what:"Balk", ids:T("180113",2,3) } ]},
  { date:"2026-10-08", day:"tor 8/10", phase:"typvis", note:"Lektion 10-12 (utmattning, statiskt brott). Imorgon CE final.", slots:[
    { when:"08:30-09:45", what:"Balk + DS", ids:[...T("170114",3), "DS:2:2018"] },
-   { when:"13:00-16:00", what:"Utmattning och brottmekanik", ids:["2.12:32","2.12:41","2.12:42","2.12:13","2.12:17","X:190417:6"] },
+   { when:"13:00-16:00", what:"Brottmekanik", ids:["2.12:32","2.12:41","2.12:42","2.12:13","2.12:17"] },
    { when:"kväll", what:"Fixa kläder och poster till CE final. Ingen Hållf.", ids:[] } ]},
  { date:"2026-10-09", day:"fre 9/10", phase:"typvis", note:"CE final seminar 8-17.", slots:[], rest:"Ingen Hållf idag. Repetitionslektionen du missar ersätts av helgens pass." },
  { date:"2026-10-10", day:"lör 10/10", phase:"typvis", note:"Två pass idag.", slots:[
@@ -622,7 +631,7 @@ const WEEKS = [
      desc:"Spänningsintensitet och sprödbrott.",
      gr:[{b:"2.12",core:[13,17],extra:[10,12]}] },
    { id:"b12", prio:0, title:"Spricktillväxt vid cyklisk last", src:"EX 2.12", min:120,
-     desc:"Utmattningssprickor och tillväxtlagar.",
+     desc:"Utmattningssprickor och tillväxtlagar. Hör ihop med utmattning, stryk om labben ersatte även detta.",
      gr:[{b:"2.12",core:[25,27],extra:[26,11,21,29]}] },
    { id:"b13", prio:0, title:"Spänningsanalys", src:"EX 1.1", min:180,
      desc:"Huvudspänningar, invarianter och Mohrs cirkel.",
@@ -635,15 +644,15 @@ const WEEKS = [
      desc:"Töjningstillstånd och sambandet spänning-töjning i tre dimensioner.",
      gr:[{b:"1.2",core:[10,12],extra:[6,11,14]},{b:"1.3",core:[7,10,14],extra:[1,4,8,11,17,18]}] }
  ]},
- { w:"Vecka 41", d:"5-9 okt", theme:"Tryckkärl, plasticitet, utmattning", scope:"tenta", blocks:[
+ { w:"Vecka 41", d:"5-9 okt", theme:"Tryckkärl, plasticitet, statiskt brott", scope:"tenta", blocks:[
    { id:"b15", prio:0, title:"Rör och tryckkärl", src:"EX 2.8", min:150,
      desc:"Tunnväggiga kärl och spänningar vid cylindrisk symmetri.",
      gr:[{b:"2.8",core:[1,3,11],extra:[2,4,12,15]}] },
-   { id:"b16", prio:0, title:"Plasticitet och utmattning", src:"EX 2.11", min:150,
-     desc:"Flytkriterier, effektivspänning och utmattningsdimensionering.",
+   { id:"b16", prio:0, title:"Plasticitet", src:"EX 2.11", min:150,
+     desc:"Flytkriterier och effektivspänning. Utmattningsdelen gjordes som labb och kommer inte på tentan.",
      gr:[{b:"2.11",core:[1,7],extra:[2,6,5,21,22]}] },
-   { id:"b17", prio:0, title:"Utmattning och statiskt brott", src:"EX 2.12", min:150,
-     desc:"Säkerhet mot brott, sista biten före repetitionsveckan.",
+   { id:"b17", prio:0, title:"Statiskt brott", src:"EX 2.12", min:150,
+     desc:"Säkerhet mot brott, sista biten före repetitionsveckan. Hoppa över ren utmattning.",
      gr:[{b:"2.12",core:[32,41,42],extra:[37,38,40,43]}] }
  ]}
 ];
