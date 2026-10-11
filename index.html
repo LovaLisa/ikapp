@@ -498,7 +498,10 @@ const FB_SEED = [
  { id:"s3", u:"FX 180220 U1", t:"Jämvikt/friläggning", p:"4", w:"Skrev T(x) och M(x) vid väggen.", r:"Vid ett stöd heter det R_A och M_A (reaktioner). T(x) och M(x) får man bara när man snittar mitt i balken." },
  { id:"s4", u:"FX 180220 U1", t:"Läste fel uppgiften", p:"4", w:"Missade att stödet sitter Δ för högt, alltså är villkoret δ = Δ och inte δ = 0.", r:"Läs vad stödet gör med geometrin: passningsfel ger villkor ≠ 0. Kolla svaret med Δ = 0 (ska ge 5P/16)." },
  { id:"s5", u:"Övning 11 (2.4.88)", t:"Jämvikt/friläggning", p:"övning", w:"Osäker på hur R_A och R_B räknas med utbredd last på en utstickare.", r:"Ersätt utbredd last med en kraft i mitten av lasten. Moment kring ett stöd. Negativt svar = kraften pekar åt andra hållet." },
- { id:"s6", u:"Övning 10 (2.4.103)", t:"Begrepp", p:"övning", w:"Förstod inte varför utstickaren ritas sned och var M_B = PL kom ifrån.", r:"Utstickarens spets = θ_B·a (stel vridning) + konsolböjningen. Lasten på utstickaren ger momentet kraft × hävarm i stödet." }
+ { id:"s6", u:"Övning 10 (2.4.103)", t:"Begrepp", p:"övning", w:"Förstod inte varför utstickaren ritas sned och var M_B = PL kom ifrån.", r:"Utstickarens spets = θ_B·a (stel vridning) + konsolböjningen. Lasten på utstickaren ger momentet kraft × hävarm i stödet." },
+ { id:"s7", u:"Tenta 210911 U1", t:"Begrepp", p:"genomgång", w:"Trodde att skivan inte kan rotera eftersom den är i jämvikt.", r:"Rotation pga last = hur mycket skivan vridits från obelastat läge till nya jämviktsläget, för att stängerna töjts. Jämvikt och rörelse utesluter inte varandra." },
+ { id:"s8", u:"Tenta 210911 U1", t:"Geometri/kompatibilitet", p:"genomgång", w:"Förstod inte hur förlängningen δ blir en förflyttning av hörnet.", r:"Väggänden står still, så hela förlängningen hamnar i skivhörnet: hörnet flyttar δ längs stången, bort från väggen om stången är dragen. Vågrät stång styr bara sidled, lodrät bara höjdled." },
+ { id:"s9", u:"Tenta 210911 U1", t:"Geometri/kompatibilitet", p:"genomgång", w:"Fattade inte var θ = (δ₁ + δ₃)/L kom ifrån.", r:"Titta från ena hörnet: θ = skillnad i förflyttning (tvärs kanten) / avstånd. Motsatta håll ger summa. Små deformationer: sin θ ≈ tan θ ≈ θ i rad (båge = Lθ), höjdledsrörelse ∝ θ² stryks. Skriv raden på tentan." }
 ];
 const FBSEEDKEY = "se1021-felbok-seed-v1";
 function fbLoad() {
