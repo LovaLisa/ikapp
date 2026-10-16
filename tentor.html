@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>SE1021 · Tentor vi gått igenom</title>
+<link rel="stylesheet" href="katex/katex.min.css">
+<script defer src="katex/katex.min.js"></script>
+<script defer src="katex/contrib/auto-render.min.js"></script>
+<style>
+:root{
+  --paper:#f7f3ea;--ink:#1f2a36;--muted:#5d6b7a;--grid:rgba(70,110,170,.10);
+  --accent:#e8650d;--accent-ink:#b54c05;--accent-soft:#fdeadd;
+  --line:#dbd4c4;--line-strong:#b9b0a0;--card:#fffdf8;
+  --blue:#1f4e79;--green:#2f6b3a;--red:#b4262c;--purple:#4a3b8c;--brown:#7a4a1e;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);background:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:36px 16px 90px}
+a{color:var(--accent-ink);text-underline-offset:3px}
+.course{margin:0 0 6px;font-family:var(--mono);font-size:13px;color:var(--muted)}
+h1{margin:0 0 10px;font-size:clamp(30px,5.5vw,44px);line-height:1.05;letter-spacing:-.02em;font-weight:800}
+.lede{margin:0;max-width:64ch;font-size:17px;color:var(--muted)}
+.lede b{color:var(--ink)}
+nav.toc{margin:18px 0 0;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:14.5px}
+nav.toc ol{margin:6px 0 0;padding-left:20px;columns:2;column-gap:24px}
+nav.toc li{margin:2px 0;break-inside:avoid}
+@media (max-width:560px){nav.toc ol{columns:1}}
+h2{margin:0;font-size:24px;letter-spacing:-.01em}
+h2 .tag{font:700 12px var(--mono);color:var(--accent-ink);border:1.5px solid var(--accent);border-radius:4px;padding:1px 7px;vertical-align:middle;margin-left:8px}
+section.prob{margin-top:48px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px 20px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+section.prob.full{border-color:var(--accent)}
+.ask{margin:8px 0 0;font-size:15px;color:var(--muted);border-left:3px solid var(--line-strong);padding-left:12px}
+.ask b{color:var(--ink)}
+h3{margin:22px 0 6px;font-size:17px;display:flex;align-items:center;gap:8px}
+h3 .rn{font:800 13px var(--mono);border-radius:4px;padding:1px 7px;color:#fff}
+h3.i .rn{background:var(--blue)} h3.ii .rn{background:var(--green)} h3.iii .rn{background:var(--purple)} h3.s .rn{background:var(--brown)} h3.k .rn{background:var(--accent)}
+h3.i{color:var(--blue)} h3.ii{color:var(--green)} h3.iii{color:var(--purple)} h3.s{color:var(--brown)}
+p{margin:6px 0}
+.fig{margin:12px 0;background:#fff;border:1px dashed var(--line-strong);border-radius:8px;padding:10px;overflow-x:auto}
+.fig svg{display:block;max-width:100%;height:auto;margin:0 auto}
+.fig .cap{font:12.5px var(--mono);color:var(--muted);margin:6px 0 0;text-align:center}
+.math{margin:8px 0;padding:6px 10px;overflow-x:auto}
+.math.box{background:#fff;border:1.5px solid var(--red);border-radius:6px;display:inline-block}
+.svar{margin:12px 0 0;padding:10px 14px;border:2px solid var(--red);border-radius:8px;background:#fff;display:inline-block}
+.svar b{color:var(--red)}
+table.tab{border-collapse:collapse;margin:8px 0;font-size:15px;background:#fff}
+table.tab th,table.tab td{border:1px solid var(--line-strong);padding:6px 12px;text-align:center}
+table.tab th{background:var(--accent-soft);font-weight:700}
+table.tab td:first-child{font-weight:700;text-align:left}
+.pit{margin:18px 0 0;background:#fff6f6;border:1.5px solid var(--red);border-radius:8px;padding:10px 14px}
+.pit h4{margin:0 0 6px;font-size:14px;color:var(--red);font-family:var(--mono);letter-spacing:.02em}
+.pit ol{margin:0;padding-left:20px;font-size:14.5px}
+.pit li{margin:3px 0}
+.fel{margin:14px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:620px){.fel{grid-template-columns:1fr}}
+.fel div{border-radius:8px;padding:10px 12px;font-size:14.5px}
+.fel .w{background:#fff6f6;border:1px solid #e3b3b5}
+.fel .r{background:#f1f8f1;border:1px solid #b6d4ba}
+.fel h4{margin:0 0 4px;font:700 12px var(--mono);letter-spacing:.02em}
+.fel .w h4{color:var(--red)} .fel .r h4{color:var(--green)}
+.note{margin:10px 0 0;font-size:14px;color:var(--muted)}
+.chk{color:var(--green);font-weight:700}
+ul.steps{margin:6px 0;padding-left:22px}
+ul.steps li{margin:4px 0}
+.rule{margin:10px 0 0;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:8px 12px;font-size:15px}
+.rule b{color:var(--accent-ink)}
+hr.soft{border:0;border-top:1px dashed var(--line-strong);margin:18px 0}
+.kort{display:grid;gap:12px;margin-top:10px}
+.kort .k{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:15px}
+.kort .k h4{margin:0 0 4px;font-size:15px}
+.kort .k p{margin:3px 0;font-size:14.5px}
+footer{margin-top:50px;font-size:13px;color:var(--muted)}
+.katex{font-size:1.05em}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="course">SE1021 · Hållfasthetslära gk · tenta mån 19/10</p>
+<h1>Tentor vi gått igenom</h1>
+<p class="lede">Samma upplägg som dina anteckningar: figur, <b>I jämvikt · II geometri · III material</b>, tabell, svar, och <b>där poäng ryker</b> i rött. Felboken ligger på <a href="index.html">ikapplistan</a>, teorin i <a href="oversikt.html">översikten</a>.</p>
+
+<nav class="toc">
+<b>Innehåll</b>
+<ol>
+<li><a href="#metod">Metodkort (läs först)</a></li>
+<li><a href="#p180113u3">180113 U3 · konsol, stöd med passningsfel</a></li>
+<li><a href="#p190112u3">190112 U3 · distans mellan två balkar</a></li>
+<li><a href="#p210911u3">210911 U3 · balk på tre stöd, laser</a></li>
+<li><a href="#p180113u2">180113 U2 · linjärt växande last</a></li>
+<li><a href="#p190112u4">190112 U4 · excentrisk last, fyrkantsrör</a></li>
+<li><a href="#p170114u1">170114 U1 · knut med tre stänger</a></li>
+<li><a href="#p210911u1">210911 U1 · stel skiva på stänger</a></li>
+<li><a href="#p160115u1">160115 U1 · stel bom med led och värme</a></li>
+<li><a href="#p230217u1">230217 U1 · stel bom i tre stänger</a></li>
+<li><a href="#pgivare">Töjningsgivare och stel skiva med led</a></li>
+<li><a href="#pfx180220">FX 180220 U1 · balk med stöd Δ för högt</a></li>
+</ol>
+</nav>
+
+<!-- ============ METODKORT ============ -->
+<section class="prob" id="metod">
+<h2>Metodkort <span class="tag">läs först</span></h2>
+
+<h3 class="k"><span class="rn">A</span> Obestämda balkar (elementarfall)</h3>
+<ul class="steps">
+<li><b>Räkna okända mot jämviktsekvationer.</b> Fler okända = statiskt obestämt → deformationen måste in.</li>
+<li><b>Ta bort stöd tills grundbalken finns i FS</b> (vägg + fri = konsol 31.1, två stöd = 31.2). Varje borttaget stöd ger en okänd kraft <i>och</i> ett villkor i samma punkt: $\delta = 0$, eller $\delta = \Delta$ vid passningsfel.</li>
+<li><b>Antal okända krafter = antal kompatibilitetsvillkor.</b> Ett villkor per kraft, i punkten där kraften verkar.</li>
+<li><b>Stödvillkor ger ekvation bara om stödet tagits bort.</b> Annars sitter det redan i elementarfallet.</li>
+<li><b>En delbild per kraft</b> på samma grundbalk. Rita alla krafter åt tabellens håll (nedåt). Lägg ihop kolumnvis, med tecken. Minus i svaret = kraften verkar åt andra hållet.</li>
+<li><b>Två balkar sitter ihop bara där något förbinder dem</b> (distans, stång). Där uppstår kraften, där ställs villkoret. Övriga punkter: inget händer.</li>
+<li><b>Hela längden eller halvor?</b> Båda rätt. Hela konsolen (l = L) är enklast. Halvor (l = L/2) kräver limning: $\delta_C = \delta_B + \theta_B\, l$.</li>
+</ul>
+
+<h3 class="k"><span class="rn">B</span> Läsa FS 31.1 (konsol med punktlast)</h3>
+<div class="fig">
+<svg viewBox="0 0 520 120" width="520" height="120" font-family="system-ui" font-size="13">
+<rect x="20" y="20" width="12" height="80" fill="#888"/>
+<line x1="32" y1="60" x2="480" y2="60" stroke="#1f2a36" stroke-width="5"/>
+<line x1="300" y1="18" x2="300" y2="55" stroke="#b4262c" stroke-width="2.5" marker-end="url(#ar)"/>
+<text x="306" y="30" fill="#b4262c" font-weight="700">P</text>
+<defs><marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L0,8 L7,4 z" fill="#b4262c"/></marker></defs>
+<text x="480" y="85" text-anchor="middle" fill="#5d6b7a">ξ = 0</text>
+<text x="300" y="85" text-anchor="middle" fill="#5d6b7a">ξ = α</text>
+<text x="40" y="85" text-anchor="start" fill="#5d6b7a">ξ = 1</text>
+<text x="390" y="108" text-anchor="middle" fill="#2f6b3a" font-weight="700">rad ξ &lt; α</text>
+<text x="166" y="108" text-anchor="middle" fill="#4a3b8c" font-weight="700">rad ξ &gt; α</text>
+<text x="300" y="108" text-anchor="middle" fill="#b4262c" font-weight="700">δ(α)</text>
+<text x="480" y="48" text-anchor="middle" fill="#5d6b7a" font-size="11">fri ände</text>
+</svg>
+<p class="cap">ξ och α räknas båda från FRIA änden. α = var lasten sitter, ξ = var du mäter. β = 1 − α = avstånd från väggen.</p>
+</div>
+<ul class="steps">
+<li>Mäter du <b>under lasten</b> → raden $\delta(\alpha)$. Alltid, även om lastläget är en bokstav (β). En bokstav betyder bara "gäller för alla placeringar".</li>
+<li>Mäter du <b>mellan lasten och väggen</b> → ξ &gt; α. Mellan lasten och fria änden → ξ &lt; α.</li>
+<li><b>Konsol med last vid βL:</b> biten bortom lasten är obelastad och rak, kapa den. $\delta_{\text{under lasten}} = \dfrac{P(\beta L)^3}{3EI}$. Vill du ha δ i spetsen behövs biten igen: $\delta_{\text{spets}} = \delta(\beta L) + \theta\cdot\alpha L$.</li>
+<li><b>Maxwell:</b> "P i B ger δ i C" = "P i C ger δ i B". Bra snabbkoll på tabellen.</li>
+<li><b>FS 31.2:</b> A/B är tabellens vänster/höger ände, inte uppgiftens bokstäver. Välj positivt håll för θ (medurs ↻ = lutar ner åt höger) och håll det genom hela uppgiften.</li>
+</ul>
+
+<h3 class="k"><span class="rn">C</span> Stångbärverk</h3>
+<ul class="steps">
+<li><b>Frihetsgrader först:</b> fri knut 2 (u, v), stel bom med led 1 (Δ vinkelrätt mot bommen), stel bom i lodräta stänger 2 (rak linje: $\delta_2 = \tfrac12(\delta_1+\delta_3)$), fri stel kropp 3. Lika många jämviktsekvationer.</li>
+<li><b>Knut = punkt:</b> bara →, ↑. Inget moment. Stel kropp: →, ↑, moment (ta moment kring leden så försvinner reaktionerna).</li>
+<li><b>Projektion:</b> rör sig knuten mot (−) eller bort från (+) stångens fäste? Bara delen längs stången räknas: 45° ger $\cos 45° = 1/\sqrt2$.</li>
+<li><b>Tabell:</b> $\delta \to \varepsilon = \delta/L \to \sigma = E\varepsilon \to N = \sigma A$. Termo: $\sigma = E(\varepsilon - \alpha\Delta T)$. Givare visar ε(nu) − ε(vid limning).</li>
+<li><b>$P_s$:</b> största |σ| = σ_s. <b>$P_f$:</b> lås flytande stänger på ±σ_sA, bara jämvikt. Två flytande stänger i en knut = mekanism.</li>
+<li><b>Notation:</b> lilla δ = förlängning (stång) eller förskjutning (balk), stora Δ = givet passningsfel, σ = spänning.</li>
+</ul>
+
+<h3 class="k"><span class="rn">D</span> Lärarnas vanligaste avdrag</h3>
+<ul class="steps">
+<li>Obestämt problem utan alla tre delarna (jämvikt + kompatibilitet + material) = 0 p. Rubriker I, II, III.</li>
+<li>Slutsvar med storheter som inte var givna. Dimensionsfel. Saknade enheter.</li>
+<li>Ingen rimlighetskoll: tecken, enhet, specialfall (Δ = 0, k → ∞, β → 0).</li>
+<li>Läs lydelsen: vad efterfrågas, vilka laster finns, två delfrågor.</li>
+</ul>
+</section>
+
+<!-- ============ 180113 U3 ============ -->
+<section class="prob full" id="p180113u3">
+<h2>Tenta 180113 U3 <span class="tag">full lösning</span></h2>
+<p class="ask"><b>Uppgift.</b> Konsolbalk (EI, längd L) fast inspänd i A. Stöd vid B (x = L/2) och vid C (x = L). Stödet C sitter Δ ≪ L för lågt, balken skruvas fast i det. Bestäm reaktionskraften i B. (6p)</p>
+
+<div class="fig">
+<svg viewBox="0 0 560 150" width="560" height="150" font-family="system-ui" font-size="13">
+<defs><marker id="ar2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L0,8 L7,4 z" fill="#b4262c"/></marker></defs>
+<rect x="30" y="20" width="12" height="90" fill="#888"/>
+<line x1="42" y1="60" x2="500" y2="60" stroke="#1f2a36" stroke-width="5"/>
+<path d="M42 60 Q 160 60 271 72 T 500 96" fill="none" stroke="#1f4e79" stroke-width="1.5" stroke-dasharray="4 3"/>
+<polygon points="271,62 263,76 279,76" fill="#2f6b3a"/>
+<polygon points="500,100 492,114 508,114" fill="#2f6b3a"/>
+<line x1="500" y1="62" x2="500" y2="98" stroke="#b4262c" stroke-width="1.5"/>
+<text x="508" y="84" fill="#b4262c" font-weight="700">Δ</text>
+<text x="48" y="48" fill="#5d6b7a">A</text><text x="265" y="48" fill="#5d6b7a">B</text><text x="494" y="48" fill="#5d6b7a">C</text>
+<text x="156" y="130" text-anchor="middle" fill="#5d6b7a">L/2</text><text x="385" y="130" text-anchor="middle" fill="#5d6b7a">L/2</text>
+<line x1="42" y1="122" x2="271" y2="122" stroke="#5d6b7a"/><line x1="271" y1="122" x2="500" y2="122" stroke="#5d6b7a"/>
+<line x1="42" y1="117" x2="42" y2="127" stroke="#5d6b7a"/><line x1="271" y1="117" x2="271" y2="127" stroke="#5d6b7a"/><line x1="500" y1="117" x2="500" y2="127" stroke="#5d6b7a"/>
+</svg>
+<p class="cap">Stödet C ligger Δ under balkens oböjda läge. Streckat: balken efter fastskruvning.</p>
+</div>
+
+<h3 class="s"><span class="rn">0</span> Hur obestämd?</h3>
+<p>Okända: väggen ger $V_A, M_A$, stöden ger $R_B, R_C$ → 4 okända. Jämvikt ger 2 ekvationer. Alltså <b>2 gånger statiskt obestämd</b> → två villkor från geometrin. Ta bort B och C, grundbalk = konsol med längd <b>L</b> (FS 31.1 fall 1). Väggen behöver inte friläggas, $R_B$ fås utan $V_A, M_A$.</p>
+
+<h3 class="i"><span class="rn">I</span> Jämvikt (friläggning)</h3>
+<p>Stöden ersätts med krafterna $P_B$ och $P_C$, båda ritade <b>nedåt</b> (samma håll som P i FS 31.1, så tabellen kan användas rakt av).</p>
+<div class="fig">
+<svg viewBox="0 0 560 110" width="560" height="110" font-family="system-ui" font-size="13">
+<defs><marker id="ar3" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L0,8 L7,4 z" fill="#b4262c"/></marker></defs>
+<rect x="30" y="20" width="12" height="80" fill="#888"/>
+<line x1="42" y1="60" x2="500" y2="60" stroke="#1f2a36" stroke-width="5"/>
+<line x1="271" y1="18" x2="271" y2="55" stroke="#b4262c" stroke-width="2.5" marker-end="url(#ar3)"/>
+<line x1="500" y1="18" x2="500" y2="55" stroke="#b4262c" stroke-width="2.5" marker-end="url(#ar3)"/>
+<text x="278" y="30" fill="#b4262c" font-weight="700">P<tspan font-size="10" dy="3">B</tspan></text><text x="470" y="30" fill="#b4262c" font-weight="700">P<tspan font-size="10" dy="3">C</tspan></text>
+<text x="48" y="90" fill="#5d6b7a">grundbalk: konsol, längd L</text>
+</svg>
+</div>
+
+<h3 class="ii"><span class="rn">II</span> Geometri (kompatibilitet)</h3>
+<ul class="steps">
+<li>Vid B: stödet sitter rätt → $\delta_B = 0$</li>
+<li>Vid C: stödet sitter Δ för lågt, balken skruvas ner till det → $\delta_C = \Delta$ (nedåt)</li>
+</ul>
+
+<h3 class="iii"><span class="rn">III</span> Material: elementarfall FS 31.1 fall 1</h3>
+<p>ξ, α från fria änden C. $\delta(\alpha) = \dfrac{PL^3\beta^3}{3EI}$ under lasten, $\delta(\xi&gt;\alpha) = \dfrac{PL^3}{6EI}\big[(\xi-\alpha)^3 - 3\beta^2(\xi-\alpha) + 2\beta^3\big]$, $\delta(\xi&lt;\alpha) = \dfrac{PL^3}{6EI}\big[-(\alpha-\xi)^3 \ldots\big]$ (ger talen nedan).</p>
+<p><b>Delbild 1, bara $P_B$</b> ($\alpha=\beta=\tfrac12$): i B (under lasten) $\dfrac{P_BL^3}{24EI}$; i C ($\xi=0&lt;\alpha$) $\dfrac{P_BL^3}{6EI}\left(-\tfrac18+\tfrac34\right) = \dfrac{5P_BL^3}{48EI}$.</p>
+<p><b>Delbild 2, bara $P_C$</b> ($\alpha=0,\ \beta=1$): i C (under lasten) $\dfrac{P_CL^3}{3EI}$; i B ($\xi=\tfrac12&gt;\alpha$) $\dfrac{P_CL^3}{6EI}\left(\tfrac18-\tfrac32+2\right) = \dfrac{P_CL^3}{6EI}\cdot\tfrac58 = \dfrac{5P_CL^3}{48EI}$.</p>
+<table class="tab">
+<tr><th>kraft</th><th>δ i B</th><th>δ i C</th></tr>
+<tr><td>$P_B$</td><td>$\dfrac{P_BL^3}{24EI}$</td><td>$\dfrac{5P_BL^3}{48EI}$</td></tr>
+<tr><td>$P_C$</td><td>$\dfrac{5P_CL^3}{48EI}$</td><td>$\dfrac{P_CL^3}{3EI}$</td></tr>
+</table>
+<p>Kontroll (Maxwell): "$P_B$ ger i C" = "$P_C$ ger i B" = 5/48 <span class="chk">✓</span></p>
+
+<h3 class="s"><span class="rn">∑</span> Superposition + villkoren från II</h3>
+<div class="math">
+$$\text{B:}\quad \frac{P_BL^3}{24EI} + \frac{5P_CL^3}{48EI} = 0 \qquad\qquad \text{C:}\quad \frac{5P_BL^3}{48EI} + \frac{P_CL^3}{3EI} = \Delta$$
+</div>
+<p>Multiplicera båda med $48EI/L^3$:</p>
+<div class="math">
+$$2P_B + 5P_C = 0 \;\Rightarrow\; P_C = -\tfrac{2}{5}P_B \qquad\qquad 5P_B + 16P_C = \frac{48EI\Delta}{L^3}$$
+$$5P_B - \tfrac{32}{5}P_B = \frac{48EI\Delta}{L^3} \;\Rightarrow\; -\tfrac{7}{5}P_B = \frac{48EI\Delta}{L^3} \;\Rightarrow\; P_B = -\frac{240EI\Delta}{7L^3}$$
+</div>
+<p><b>Tolkning:</b> $P_B$ ritades nedåt, minus = verkar uppåt. Stödet B trycker upp på balken.</p>
+<div class="svar"><b>Svar:</b> $R_B = \dfrac{240EI\Delta}{7L^3}$ uppåt.</div>
+<p class="note">Dimension: $[EI\Delta/L^3] = \text{Pa}\cdot\text{m}^4\cdot\text{m}/\text{m}^3 = \text{N}$ ✓. Rimlighet: Δ = 0 ger $R_B$ = 0 ✓, styvare balk eller större Δ ger större kraft ✓. $P_C = +96EI\Delta/(7L^3)$ nedåt, stödet C drar ner balken, rimligt.</p>
+
+<hr class="soft">
+<h3 class="s"><span class="rn">alt</span> Facits väg: halvor (l = L/2) + matris</h3>
+<p>Facit använder konsol med längd $l = L/2$ och måste då <b>limma</b> för punkter utanför l.</p>
+<p><b>$P_B$ ger:</b> $\delta_B = \dfrac{P_Bl^3}{3EI}$ (direkt). $\delta_C = \dfrac{P_Bl^3}{3EI} + \underbrace{\dfrac{P_Bl^2}{2EI}}_{\theta_B}\cdot l$: mellan B och C ingen last i denna delbild, balken är <b>rak</b> där. C hänger ner lika mycket som B plus lutningen $\theta_B$ gånger längden l.</p>
+<p><b>$P_C$ ger:</b> $\delta_C = \dfrac{P_C(2l)^3}{3EI}$ (hela längden på en gång). $\delta_B = \dfrac{P_Cl^3}{3EI} + \dfrac{P_Cl\cdot l^2}{2EI}$: flytta $P_C$ från C till B = kraft $P_C$ i B plus moment $P_Cl$. Kraft i spetsen på konsol l ger $P_Cl^3/(3EI)$, moment i spetsen ger $Ml^2/(2EI)$.</p>
+<p>Gemensam nämnare 6EI: $\tfrac13 = \tfrac26$, $\tfrac13+\tfrac12 = \tfrac56$, $\tfrac83 = \tfrac{16}{6}$:</p>
+<div class="math">
+$$\begin{bmatrix}\delta_B\\ \delta_C\end{bmatrix} = \frac{l^3}{6EI}\begin{bmatrix}2&5\\5&16\end{bmatrix}\begin{bmatrix}P_B\\P_C\end{bmatrix}
+\qquad \det = 2\cdot16-5\cdot5 = 7$$
+</div>
+<p><b>Varför invertera?</b> Vi vet δ (0 och Δ) och söker P. $\delta = AP \Rightarrow P = A^{-1}\delta$, "dela med matrisen". 2×2-regel: byt plats på diagonalen, byt tecken på de andra två, dela med det. Faktorn $l^3/(6EI)$ vänds också.</p>
+<div class="math">
+$$\begin{bmatrix}P_B\\P_C\end{bmatrix} = \frac{6EI}{7l^3}\begin{bmatrix}16&-5\\-5&2\end{bmatrix}\begin{bmatrix}0\\ \Delta\end{bmatrix}
+\;\Rightarrow\; P_B = \frac{6EI}{7l^3}(16\cdot0 - 5\Delta) = -\frac{30EI\Delta}{7l^3} = -\frac{240EI\Delta}{7L^3}$$
+</div>
+<p>Bara rad 1 behövs när $P_B$ är sökt. Utan matris: lös $P_C$ ur första ekvationen, sätt in i andra. Samma poäng.</p>
+
+<div class="pit">
+<h4>DÄR POÄNG RYKER</h4>
+<ol>
+<li>Halvera balken (l = L/2) utan att limma: $\delta_C = \delta_B + \theta_B\,l$.</li>
+<li>Fel rad i FS 31.1. Fråga alltid: var sitter kraften (α), var vill jag veta δ (ξ)? Båda från fria änden. (Jag bytte etiketter på $P_C$-kolumnen: $PL^3/(3EI)$ är under lasten, alltså i C.)</li>
+<li>Glömma att $\delta_C = \Delta$, inte 0. Passningsfelet ÄR villkoret.</li>
+<li>Lägga ihop delbilderna utan tecken, eller rita $P_B$ och $P_C$ åt olika håll och blanda ihop.</li>
+<li>Ingen dimensionskoll och ingen tolkning av minustecknet.</li>
+</ol>
+</div>
+</section>
+
+<!-- ============ 190112 U3 ============ -->
+<section class="prob full" id="p190112u3">
+<h2>Tenta 190112 U3 <span class="tag">full lösning</span></h2>
+<p class="ask"><b>Uppgift.</b> Konsol (kEI, L) ovanför fritt upplagd balk (EI, L). Vid x = βL från väggen kläms en stel distans in som är Δ ≪ L för lång. Bestäm klämkraften P(β). För k = 14: vilket β ger minsta klämkraft? (6p)</p>
+
+<div class="fig">
+<svg viewBox="0 0 560 190" width="560" height="190" font-family="system-ui" font-size="13">
+<defs><marker id="ar4" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L0,8 L7,4 z" fill="#b4262c"/></marker>
+</defs>
+<rect x="30" y="20" width="12" height="60" fill="#888"/>
+<line x1="42" y1="50" x2="500" y2="50" stroke="#1f2a36" stroke-width="5"/>
+<text x="470" y="40" fill="#5d6b7a">kEI, L</text>
+<path d="M42 50 Q 200 50 300 42 T 500 28" fill="none" stroke="#1f4e79" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="42" y1="130" x2="500" y2="130" stroke="#1f2a36" stroke-width="5"/>
+<text x="470" y="155" fill="#5d6b7a">EI, L</text>
+<polygon points="42,132 34,146 50,146" fill="#2f6b3a"/>
+<circle cx="500" cy="138" r="6" fill="#fff" stroke="#2f6b3a" stroke-width="2"/>
+<path d="M42 130 Q 300 170 500 130" fill="none" stroke="#1f4e79" stroke-width="1.5" stroke-dasharray="4 3"/>
+<rect x="294" y="70" width="12" height="40" fill="#7a4a1e"/>
+<line x1="300" y1="68" x2="300" y2="54" stroke="#b4262c" stroke-width="2.5" marker-end="url(#ar4)"/>
+<line x1="300" y1="112" x2="300" y2="126" stroke="#b4262c" stroke-width="2.5" marker-end="url(#ar4)"/>
+<text x="308" y="64" fill="#b4262c" font-weight="700">P</text><text x="308" y="124" fill="#b4262c" font-weight="700">P</text>
+<text x="315" y="95" fill="#7a4a1e" font-size="12">stel, Δ för lång</text>
+<line x1="42" y1="175" x2="300" y2="175" stroke="#5d6b7a"/><line x1="300" y1="175" x2="500" y2="175" stroke="#5d6b7a"/>
+<line x1="42" y1="170" x2="42" y2="180" stroke="#5d6b7a"/><line x1="300" y1="170" x2="300" y2="180" stroke="#5d6b7a"/><line x1="500" y1="170" x2="500" y2="180" stroke="#5d6b7a"/>
+<text x="171" y="188" text-anchor="middle" fill="#5d6b7a">βL</text><text x="400" y="188" text-anchor="middle" fill="#5d6b7a">αL</text>
+</svg>
+<p class="cap">Konsolen böjs UPP δ₁, balken NER δ₂. Inget förbinder balkarna utom distansen. α + β = 1.</p>
+</div>
+
+<p><b>Antaganden:</b> linjärelastiskt, små deformationer (Δ ≪ L), distansen stel.</p>
+
+<h3 class="i"><span class="rn">I</span> Jämvikt</h3>
+<p>Frilägg distansen: den är en tryckt kloss. Trycker uppåt på konsolen och nedåt på balken med samma kraft P (Newton 3). <b>En okänd, P.</b> Som en stångkraft N: ett tal, två pilar.</p>
+
+<h3 class="ii"><span class="rn">II</span> Geometri (kompatibilitet)</h3>
+<p>Gapet vid distansen är d oböjt och måste bli d + Δ. Båda mätta vid x = βL:</p>
+<div class="math">$$\delta_1 + \delta_2 = \Delta$$</div>
+<p class="note">En okänd → ett villkor, i punkten där den okända verkar. Stödvillkoren (δ = 0 i A och C för balken, δ = 0 vid väggen) sitter redan i elementarfallen och ger inga nya ekvationer. I C händer inget: inget förbinder balkarna där.</p>
+
+<h3 class="iii"><span class="rn">III</span> Material (elementarfall)</h3>
+<p><b>Konsol, FS 31.1 fall 1.</b> Lasten sitter βL från väggen. Biten utanför lasten är obelastad och rak, kapa den: konsol med längd βL belastad i spetsen.</p>
+<div class="math">$$\delta_1 = \frac{P(\beta L)^3}{3kEI} = \frac{P\beta^3L^3}{3kEI}$$</div>
+<p><b>Fritt upplagd, FS 31.2 fall 1.</b> Punktlast βL från vänster, αL från höger, nedböjning under lasten:</p>
+<div class="math">$$\delta_2 = \frac{PL^3\alpha^2\beta^2}{3EI} = \frac{PL^3\beta^2(1-\beta)^2}{3EI}$$</div>
+
+<h3 class="s"><span class="rn">∑</span> Sätt in i II</h3>
+<div class="math">$$\Delta = \frac{PL^3\beta^3}{3kEI} + \frac{PL^3\beta^2(1-\beta)^2}{3EI} = \frac{PL^3}{3kEI}\Big[\beta^3 + k\beta^2(1-\beta)^2\Big]$$</div>
+<p class="note">Bryt ut $PL^3/(3kEI)$: andra termen får då faktorn k.</p>
+<div class="svar"><b>Svar a):</b> $P(\beta) = \dfrac{3kEI\Delta}{L^3\big[\beta^3 + k\beta^2(1-\beta)^2\big]}$</div>
+<p class="note">Dimension: Pa·m⁴·m/m³ = N ✓. β → 0 ger P → ∞ (distansen vid väggen) ✓. k → ∞ ger $P = 3EI\Delta/(L^3\beta^2(1-\beta)^2)$, bara balken böjs ✓.</p>
+
+<h3 class="s"><span class="rn">b</span> P<sub>min</sub> för k = 14</h3>
+<p>P minst när nämnaren $f(\beta) = \beta^3 + k\beta^2(1-\beta)^2$ är störst, β ∈ ]0, 1].</p>
+<div class="math">
+$$f'(\beta) = 3\beta^2 + k\big[2\beta(1-\beta)^2 - 2\beta^2(1-\beta)\big] = 3\beta^2 + 2k\beta(1-\beta)(1-2\beta) = 3\beta^2 + k(2\beta - 6\beta^2 + 4\beta^3)$$
+</div>
+<p>$f' = 0$, dela med β (β ≠ 0): $3\beta + 2k(1-3\beta+2\beta^2) = 0 \Rightarrow 4k\beta^2 + (3-6k)\beta + 2k = 0$. Dela med 4k:</p>
+<div class="math">$$\beta^2 - \tfrac32\Big(1-\tfrac{1}{2k}\Big)\beta + \tfrac12 = 0 \quad\xrightarrow{k=14}\quad \beta^2 - \tfrac{81}{56}\beta + \tfrac12 = 0$$
+$$\beta = \tfrac{81}{112} \pm \sqrt{\big(\tfrac{81}{112}\big)^2 - \tfrac12} = \tfrac{81}{112} \pm \sqrt{\tfrac{289}{12544}} = \frac{81 \pm 17}{112} \;\Rightarrow\; \beta = \tfrac47 \approx 0{,}571 \;\text{ eller }\; \beta = \tfrac78 = 0{,}875$$
+</div>
+<table class="tab">
+<tr><th>β</th><th>4/7</th><th>7/8</th><th>1 (ändpunkt)</th><th>→ 0</th></tr>
+<tr><td>f(β)</td><td>≈ 1,026 <b>max</b></td><td>≈ 0,837 (lokalt min)</td><td>1</td><td>→ 0 (P → ∞)</td></tr>
+</table>
+<div class="svar"><b>Svar b):</b> $P_{\min}$ fås för $\beta = \tfrac47 \approx 0{,}57$, dvs distansen ca 57 % av L från väggen. $P_{\min} \approx 41\,EI\Delta/L^3$.</div>
+
+<div class="pit">
+<h4>DÄR POÄNG RYKER</h4>
+<ol>
+<li>Två okända krafter ($P_B - P_C$) eller friläggning av stöd. Det är en inre kraft: en okänd, ett villkor.</li>
+<li>Villkor δ = 0 i stöd som inte tagits bort. Sitter redan i elementarfallet.</li>
+<li>Fel rad i FS 31.1. Mäter du under lasten är det alltid δ(α), och här räcker "konsol med längd βL".</li>
+<li>Tappa k vid utbrytningen. Skriva $(1-\beta^2)$ i stället för $(1-\beta)^2$. Tappa kvadraten på β i svaret.</li>
+<li>Lösa f' = 0 och stanna. Avgör vilken rot som är min, kolla ändpunkten β = 1, nämn att β = 0 ger P → ∞.</li>
+<li>Dela med β utan att säga β ≠ 0.</li>
+</ol>
+</div>
+</section>
+
+<!-- ============ 210911 U3 ============ -->
+<section class="prob" id="p210911u3">
+<h2>Tenta 210911 U3 <span class="tag">kort</span></h2>
+<p class="ask"><b>Uppgift.</b> Balk över tre stöd (A, B, C), spann 2L, punktlast P på höger spann, spegel vid ett stöd. Laserstrålen vrids en vinkel φ. Bestäm P.</p>
+<div class="kort">
+<div class="k"><h4>Nyckeln</h4>
+<p>Balk över 3 stöd = obestämd. <b>Snitta vid mittstödet B</b>, sätt in $M_B$ lika och motsatt på båda delarna. Varje del = fritt upplagd balk (FS 31.2) med sina egna laster + ändmomentet $M_B$ (fall 5, översta raden, tabell-$M_B$ = 0).</p>
+<p>Kompatibilitet: <b>samma θ vid B på båda sidor</b> (balken har ingen knyck). Vänster spann (obelastat) bromsar vridningen från höger spann.</p>
+<p>Superposition: θ från P och θ från $M_B$ adderas <b>med tecken</b>. Välj medurs ↻ positivt och håll det.</p>
+<p>Optik: spegel vrids θ → strålen vrids 2θ. Läs av i figuren vad som är givet.</p></div>
+</div>
+<div class="fel">
+<div class="w"><h4>VAD JAG GJORDE FEL</h4>Räknade höger spann som en egen fritt upplagd balk. Tog spannlängd L i stället för 2L. Vände $P = 16EI\theta/L^2$ fel. Underströk fel rad i FS 31.2 fall 5 ($M_A = M_B = M$ i stället för en ändmoment).</div>
+<div class="r"><h4>REGEL</h4>Läs måtten i figuren för varje spann. Efter att ha löst ut P: kolla att enheten är N. FS 31.2 A/B = tabellens vänster/höger ände, översätt till uppgiftens bokstäver. Ett ändmoment → översta raden i fall 5.</div>
+</div>
+</section>
+
+<!-- ============ 180113 U2 ============ -->
+<section class="prob" id="p180113u2">
+<h2>Tenta 180113 U2 <span class="tag">kort</span></h2>
+<p class="ask"><b>Uppgift.</b> Balk med linjärt växande utbredd last $q(x)$ från 0 vid A till $q_0$ vid B. Bestäm T, M och max böjspänning.</p>
+<div class="kort">
+<div class="k"><h4>Nyckeln</h4>
+<p>Teckenkonvention GH figur 18 (s. 30): z uppåt, positiv q uppåt. Last nedåt skrivs <b>med minus</b>: $q(x) = -q_0 x/L$. $q_0$ är en konstant (N/m), x är var du är.</p>
+<p><b>Global jämvikt:</b> hela triangeln $Q = q_0L/2$ i tyngdpunkten 2L/3 från A. Gäller bara för reaktionerna.</p>
+<p><b>Snitt vid x:</b> den del av triangeln som är kvar har resultant $\dfrac{q_0 x^2}{2L}$ (area: bas x, höjd $q_0x/L$) och angriper <b>x/3 från snittet</b> (tyngdpunkten i en triangel ligger 1/3 från den tjocka änden).</p>
+<p>$T(x)$ upp och $M(x)$ medurs på vänster del. Positivt M = "ledsen mun". $EIw'' = -M$, $dT/dx = -q$, $dM/dx = T$.</p>
+<p>$I_y = bh^3/12$ med h i lastriktningen. $W_b = bh^2/6$, $\sigma = |M|_{\max}/W_b$.</p></div>
+</div>
+<div class="fel">
+<div class="w"><h4>VAD JAG GJORDE FEL</h4>Tecknet på $R_A$. Lät lasten "angripa vid 2L/3" även i snittet. Missade faktorn x/3. Blandade ihop q (N/m) med Q (N).</div>
+<div class="r"><h4>REGEL</h4>Resultant i tyngdpunkten är bara för jämvikt, aldrig för nedböjning. I ett snitt: rita om den kvarvarande lasten, räkna dess egen area och tyngdpunkt. Enhetskoll: q·längd = N.</div>
+</div>
+</section>
+
+<!-- ============ 190112 U4 ============ -->
+<section class="prob" id="p190112u4">
+<h2>Tenta 190112 U4 <span class="tag">kort</span></h2>
+<p class="ask"><b>Uppgift.</b> Fyrkantsrör (konsol) med last P excentriskt, avstånd h/2 från axeln. Bestäm förskjutningen i hörnet.</p>
+<div class="kort">
+<div class="k"><h4>Nyckeln</h4>
+<p><b>Flytta kraften till axeln + lägg till moment</b> $M_v = P\cdot h/2$. Nu: en böjning (P på axeln) + en vridning ($M_v$).</p>
+<p>Böjning: $\delta_b = PL^3/(3EI)$. Vridning: $\theta = M_vL/(GK)$, $G = E/(2(1+\nu))$.</p>
+<p>Hörnet rör sig $\Delta = \delta_b + \theta\cdot h/2$ (vridning × hävarm). Snyggt uttryck: <b>bryt ut största termen</b> så det blir $\delta_b\,[1 + \ldots]$.</p></div>
+</div>
+<div class="fel">
+<div class="w"><h4>VAD JAG GJORDE FEL</h4>Förstod inte hur böjning och vridning hänger ihop eller hur facit fick ett kort uttryck.</div>
+<div class="r"><h4>REGEL</h4>Excentrisk last = kraft på axeln + moment. Två elementarfall, addera förskjutningarna i punkten. Bryt ut, kolla enhet.</div>
+</div>
+</section>
+
+<!-- ============ 170114 U1 ============ -->
+<section class="prob" id="p170114u1">
+<h2>Tenta 170114 U1 <span class="tag">kort</span></h2>
+<p class="ask"><b>Uppgift.</b> Knut med tre stänger (en vågrät, en lodrät, en i 45°), last P. Stångkrafter, $P_s$ (begynnande plasticering) och $P_f$ (fullplasticering).</p>
+<div class="kort">
+<div class="k"><h4>Nyckeln</h4>
+<p><b>Frihetsgrader:</b> knuten är en punkt, 2 frihetsgrader (u, v) → 2 jämviktsekvationer (→, ↑). Inget moment. 3 stänger = 1 gång obestämd.</p>
+<p><b>Projektion:</b> en stång i taget. Rör sig knuten mot (−) eller bort från (+) stångens fäste? Bara delen längs stången räknas: vågrät 100 %, lodrät 100 %, 45° ger $(u \pm v)/\sqrt2$.</p>
+<p><b>Tabell:</b> $\delta_i \to \varepsilon_i = \delta_i/L_i \to \sigma_i = E\varepsilon_i \to N_i = \sigma_iA_i$. Sätt in i jämvikten, lös u, v.</p>
+<p><b>$P_s$:</b> största |σ| = σ_s (tryck flyter också). <b>$P_f$:</b> lås flytande stänger på ±σ_sA, bara jämvikt, nästa stång flyter. Två flytande stänger i en knut = mekanism = $P_f$.</p></div>
+</div>
+<div class="fel">
+<div class="w"><h4>VAD JAG GJORDE FEL</h4>Tog moment för knuten som tredje ekvation. Förstod inte 1/√2 eller "till beloppet störst".</div>
+<div class="r"><h4>REGEL</h4>Knut = punkt = 2 ekvationer. Belopp = |σ|. Ställ upp tabellen, den gör jobbet.</div>
+</div>
+</section>
+
+<!-- ============ 210911 U1 ============ -->
+<section class="prob" id="p210911u1">
+<h2>Tenta 210911 U1 <span class="tag">kort</span></h2>
+<p class="ask"><b>Uppgift.</b> Stel skiva upphängd i stänger, last. Bestäm stångkrafter och skivans rotation.</p>
+<div class="kort">
+<div class="k"><h4>Nyckeln</h4>
+<p>Jämvikt → N. Hooke $\delta = NL/(EA)$. Varje stång flyttar sitt hörn δ <b>längs stången, bort från väggen om stången är dragen</b> (väggänden står still, hela förlängningen hamnar i hörnet).</p>
+<p>Rotation: titta från ena hörnet, $\theta = \dfrac{\text{skillnad i förflyttning tvärs kanten}}{\text{avstånd}}$. Motsatta håll ger summa: $\theta = (\delta_1+\delta_3)/L$.</p>
+<p>Små deformationer: $\sin\theta \approx \tan\theta \approx \theta$ (rad), $\theta^2$-termer stryks.</p></div>
+</div>
+<div class="fel">
+<div class="w"><h4>VAD JAG GJORDE FEL</h4>Trodde att skivan inte kan rotera eftersom den är i jämvikt. Förstod inte hur δ blir en förflyttning av hörnet.</div>
+<div class="r"><h4>REGEL</h4>Rotation pga last = hur mycket skivan vridits från obelastat till nytt jämviktsläge. Jämvikt och rörelse utesluter inte varandra.</div>
+</div>
+</section>
+
+<!-- ============ 160115 U1 ============ -->
+<section class="prob" id="p160115u1">
+<h2>Tenta 160115 U1 <span class="tag">kort</span></h2>
+<p class="ask"><b>Uppgift.</b> Stel bom med led i botten, hålls av två sneda stänger (vinkel φ), temperaturändring ΔT och/eller last. Stångkrafter.</p>
+<div class="kort">
+<div class="k"><h4>Nyckeln</h4>
+<p><b>Frihetsgrad:</b> stel bom med led → toppen rör sig bara <b>vinkelrätt mot bommen</b>, 1 obekant Δ. Moment kring leden = enda jämviktsekvationen som behövs.</p>
+<p><b>Geometri:</b> zooma in på toppen, dra vinkelrätt från förskjutningen mot varje stångs linje: $\delta_i = \pm\Delta\cos\varphi$. Stånglängd $L_i = L/\sin\varphi$.</p>
+<p><b>Termo-Hooke:</b> $\sigma = E(\varepsilon - \alpha\Delta T)$. Fri utvidgning ger ingen spänning, hindrad ger det.</p></div>
+</div>
+<div class="fel">
+<div class="w"><h4>VAD JAG GJORDE FEL</h4>Lät toppen röra sig både vågrätt och lodrätt. Glömde cos φ och att $L_i = L/\sin\varphi$.</div>
+<div class="r"><h4>REGEL</h4>Räkna frihetsgrader först. En frihetsgrad = en obekant förskjutning = en jämviktsekvation.</div>
+</div>
+</section>
+
+<!-- ============ 230217 U1 ============ -->
+<section class="prob" id="p230217u1">
+<h2>Tenta 230217 U1 <span class="tag">kort</span></h2>
+<p class="ask"><b>Uppgift.</b> Stel bom hängande i tre lodräta stänger på lika avstånd, last. Stångkrafter.</p>
+<div class="kort">
+<div class="k"><h4>Nyckeln</h4>
+<p><b>Frihetsgrader:</b> stel bom i lodräta stänger → 2 (förskjutning + lutning) → 2 jämviktsekvationer (↑ och moment). 3 stänger = 1 gång obestämd.</p>
+<p><b>Rak linje:</b> bommen är rak före och efter. Lika avstånd ger $\delta_2 = \tfrac12(\delta_1+\delta_3)$. Det är kompatibiliteten, inga vinklar behövs.</p>
+<p>Rita alla δ positiva (nedåt). Tecknet i svaret visar om en stång blev kortare.</p></div>
+</div>
+<div class="fel">
+<div class="w"><h4>VAD JAG GJORDE FEL</h4>Försökte beskriva lutningen med sin θ och okända hypotenusor.</div>
+<div class="r"><h4>REGEL</h4>Stel bom = rak linje. Mittvärdet är medelvärdet av ändarna. Små vinklar: inga sinus.</div>
+</div>
+</section>
+
+<!-- ============ givare + skiva ============ -->
+<section class="prob" id="pgivare">
+<h2>Töjningsgivare · stel skiva med led <span class="tag">kort</span></h2>
+<div class="kort">
+<div class="k"><h4>Töjningsgivare (M, Δ, ε₀)</h4>
+<p>Givaren visar <b>ε(nu) − ε(när den limmades på)</b>, som tara på en köksvåg. Givare som visar 0 betyder inte otöjd stång.</p>
+<p>Gör en tabell N, δ, ε per läge (före limning, efter last) och subtrahera. Hooke: $\varepsilon = \sigma/E$, inte σE (enhetskoll: ε saknar enhet).</p></div>
+<div class="k"><h4>Stel skiva med led + två stänger</h4>
+<p>Stel kropp i planet: alltid 3 ekvationer (→, ↑, moment). <b>Ta moment kring leden</b> så försvinner reaktionerna där.</p>
+<p>$\delta_1 + \delta_2 = 0$ gäller bara två stänger i rad i samma punkt. Med led: förskjutning ∝ avstånd till leden (som en dörr). Rita deformerat läge och läs av.</p></div>
+</div>
+</section>
+
+<!-- ============ FX 180220 U1 ============ -->
+<section class="prob" id="pfx180220">
+<h2>FX 180220 U1 <span class="tag">kort</span></h2>
+<p class="ask"><b>Uppgift.</b> Balk fast inspänd i A, stöd i B som sitter Δ för högt, last P. Bestäm $R_B$.</p>
+<div class="kort">
+<div class="k"><h4>Nyckeln</h4>
+<p>Tre okända ($R_A, M_A, R_B$), två ekvationer → obestämd. Ta bort B, grundbalk = konsol (hela längden). En okänd $R_B$ → ett villkor i B: $\delta_B = \Delta$ (uppåt, stödet sitter för högt), inte 0.</p>
+<p>Två delbilder: P ger δ i B, $R_B$ ger δ i B. Addera med tecken = Δ. Kolla med Δ = 0: ska ge $R_B = 5P/16$.</p></div>
+</div>
+<div class="fel">
+<div class="w"><h4>VAD JAG GJORDE FEL</h4>Klippte balken vid P (efter förra uppgiftens bild) i stället för efter stöden. Satte $R_B = P$ med bara jämvikt. Skrev T(x), M(x) vid väggen. Missade Δ i villkoret.</div>
+<div class="r"><h4>REGEL</h4>Stöden väljer tabell, lasterna väljer rad. Vid ett stöd heter det $R_A$, $M_A$. Passningsfel ger villkor ≠ 0.</div>
+</div>
+</section>
+
+<footer>
+<p>De korta korten är kondenserade (mina detaljerade anteckningar från de passen är borta). Skicka dina anteckningar för en uppgift så fyller jag i den till full lösning. Tillbaka till <a href="index.html">ikapplistan</a>.</p>
+</footer>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+  if(window.renderMathInElement){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false});}
+});
+</script>
+</body>
+</html>
